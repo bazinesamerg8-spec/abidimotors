@@ -1,0 +1,51 @@
+/* Premium vehicle detail presentation. */
+.vehicle-modal{position:fixed;inset:0;width:min(1180px,96vw);max-height:92dvh;margin:auto;padding:0;border:1px solid #d2ac72;border-radius:3px 34px 3px 3px;background:#f7f4ed;color:#10251e;box-shadow:0 45px 150px #000b;overflow:auto}
+.vehicle-modal::backdrop{background:#030807e8;backdrop-filter:blur(14px) saturate(.7)}
+.vehicle-modal #modalContent{min-height:100%;position:relative}
+.vehicle-modal .modal-layout{min-height:min(720px,88dvh);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(390px,.8fr)}
+.vehicle-modal .modal-close{position:fixed;z-index:15;top:max(22px,calc(50% - 44dvh + 14px));right:max(2.8vw,calc(50% - 590px + 14px));width:45px;height:45px;border:1px solid #ffffff38;border-radius:50%;background:#0b1c17e8;color:#fff;font-size:20px;box-shadow:0 10px 30px #0005;backdrop-filter:blur(10px);transition:transform .25s,background .25s}
+.vehicle-modal .modal-close:hover{transform:rotate(90deg);background:#d2a66d;color:#10251e}
+.vehicle-modal .modal-viewer{position:relative;min-height:680px;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 52% 43%,#7f988d 0,#29473c 42%,#081410 78%);border-right:1px solid #d2ac7266}
+.vehicle-modal .modal-viewer:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(#ffffff0c 1px,transparent 1px),linear-gradient(90deg,#ffffff0c 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(circle,#000,transparent 72%)}
+.vehicle-modal .modal-viewer:after{content:"";position:absolute;left:8%;right:8%;bottom:15%;height:18%;pointer-events:none;background:radial-gradient(ellipse,#0008,transparent 68%);filter:blur(10px)}
+.detail-viewer-top,.detail-viewer-foot{position:absolute;z-index:6;left:28px;right:28px;display:flex;align-items:center;color:#d7e0d9;font-size:8px;letter-spacing:.17em}
+.detail-viewer-top{top:26px;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid #ffffff28}
+.detail-viewer-top span{color:#dfb781}.detail-viewer-top b{font-weight:600}
+.detail-viewer-foot{bottom:23px;gap:10px;color:#aebdb3}
+.detail-viewer-foot i{width:7px;height:7px;border-radius:50%;background:#dfb781;box-shadow:0 0 15px #dfb781}
+.detail-viewer-foot small{margin-left:auto;color:#dfb781}
+.vehicle-modal .spin-shell{position:relative;z-index:3;width:min(100%,680px);padding:30px 24px 55px;text-align:center}
+.vehicle-modal .spin-stage{width:100%;max-height:500px;aspect-ratio:1;filter:drop-shadow(0 28px 24px #0008)}
+.vehicle-modal .spin-progress{position:relative;z-index:7;margin-top:-18px}
+.vehicle-modal .spin-progress button{width:42px;height:42px;border:1px solid #dfb78177;background:#0a1b16db;color:#efc58e;border-radius:50%}
+.vehicle-modal .spin-progress input{height:3px;accent-color:#e1b77d}
+.vehicle-modal .spin-counter{margin-top:10px;color:#a8b8ae}.vehicle-modal .spin-counter span,.vehicle-modal .spin-help{color:#f0c68f}
+.vehicle-modal .asset-note{color:#9bac9f}
+.vehicle-modal .detail-photo-shell{position:relative;z-index:3;width:100%;height:100%;min-height:680px;background:#e9ece7}
+.vehicle-modal .detail-photo-shell img{width:100%;height:100%;min-height:680px;object-fit:contain;object-position:center;background:#e9ece7}
+.vehicle-modal .modal-copy{position:relative;z-index:4;padding:58px 48px 38px;overflow:auto;background:linear-gradient(145deg,#fbfaf6,#e9ece7)}
+.detail-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-right:40px}
+.vehicle-modal .detail-heading .eyebrow{margin:0;color:#866128;font-size:8px}
+.detail-status{display:inline-flex;align-items:center;gap:7px;color:#53655d;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.detail-status i{width:7px;height:7px;border-radius:50%;background:#4b8e69;box-shadow:0 0 12px #4b8e6977}
+.vehicle-modal .modal-copy h2{margin:21px 0 24px;color:#10251e;font:400 clamp(43px,4.2vw,67px)/.92 Georgia,serif;letter-spacing:-.055em}
+.detail-price{display:grid;grid-template-columns:1fr auto;align-items:end;padding:19px 0;border-block:1px solid #b8bdb5}
+.detail-price small{grid-column:1;color:#7a867e;font-size:8px;letter-spacing:.15em}
+.detail-price strong{grid-column:2;grid-row:1/3;color:#a26f29;font:400 34px Georgia,serif}
+.detail-price span{margin-top:7px;color:#7b867f;font-size:9px}
+.vehicle-modal .detail-intro{margin:25px 0;color:#607169;font-size:13px;line-height:1.75}
+.vehicle-modal .modal-specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:0;background:#cbd0ca;border:1px solid #cbd0ca}
+.vehicle-modal .modal-specs div{min-height:78px;padding:16px;background:#f7f5ef}
+.vehicle-modal .modal-specs small{display:block;margin-bottom:9px;color:#849088;font-size:7px;letter-spacing:.1em}
+.vehicle-modal .modal-specs b{color:#183128;font-size:13px;font-weight:600}
+.vehicle-modal .modal-actions{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-top:24px}
+.vehicle-modal .modal-actions .button{min-height:50px;padding:13px 15px;border-radius:2px;font-size:10px;box-shadow:none}
+.vehicle-modal .modal-actions .enquire{grid-column:1/-1;justify-content:space-between;background:#10251e;border-color:#10251e;color:#fff}
+.vehicle-modal .modal-actions .enquire span{color:#e1b77d;font-size:17px}
+.vehicle-modal .detail-whatsapp{justify-content:space-between;background:#dcb378;border-color:#dcb378;color:#10251e}
+.vehicle-modal .detail-share{color:#5b6a62;border-color:#a9b1aa}
+.detail-assurance{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0 0;color:#728078;font-size:8px;letter-spacing:.04em}
+
+@media(max-width:820px){.vehicle-modal .modal-layout{min-height:0;grid-template-columns:1fr}.vehicle-modal .modal-viewer{min-height:340px;border-right:0;border-bottom:1px solid #d2ac7266}.vehicle-modal .spin-shell{padding:30px 12px 44px}.vehicle-modal .spin-stage{max-height:360px}.vehicle-modal .detail-photo-shell,.vehicle-modal .detail-photo-shell img{min-height:340px}.vehicle-modal .modal-copy{padding:34px 24px max(30px,env(safe-area-inset-bottom))}.vehicle-modal .modal-copy h2{font-size:clamp(38px,10vw,50px)}.vehicle-modal .modal-close{position:fixed;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right))}.detail-viewer-top{top:18px}.detail-viewer-top,.detail-viewer-foot{left:18px;right:18px}.detail-heading{padding-right:32px}}
+@media(max-width:480px){.vehicle-modal .modal-viewer{min-height:300px}.vehicle-modal .detail-photo-shell,.vehicle-modal .detail-photo-shell img{min-height:300px}.vehicle-modal .spin-shell{padding:31px 10px 38px}.vehicle-modal .spin-stage{width:min(100%,260px);margin:auto}.vehicle-modal .spin-progress{margin-top:-2px}.vehicle-modal .asset-note{display:none}.detail-viewer-top b{display:none}.detail-viewer-foot span{max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.vehicle-modal .modal-copy{padding:30px 20px}.detail-price strong{font-size:29px}.vehicle-modal .modal-actions{grid-template-columns:1fr 1fr}.vehicle-modal .modal-actions .detail-share{grid-column:auto}.detail-assurance{display:grid;gap:7px}}
+@media(prefers-reduced-motion:reduce){.vehicle-modal .modal-close{transition:none}}

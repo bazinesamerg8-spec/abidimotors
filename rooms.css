@@ -1,0 +1,127 @@
+/* Services and story continue the spatial language of the digital showroom. */
+.experience,.about-section{position:relative;isolation:isolate;overflow:hidden}
+.inventory-section{position:relative;isolation:isolate;overflow:hidden;padding-bottom:clamp(130px,11vw,185px);background:radial-gradient(circle at 10% 6%,#e7c99542,transparent 27%),radial-gradient(circle at 92% 19%,#8da99d32,transparent 31%),linear-gradient(145deg,#f8f5ed 0%,#ece9e1 48%,#e3e8e3 100%)}
+.inventory-section:before{display:none}
+.inventory-section>:not(.inventory-atmosphere){position:relative;z-index:2}
+.inventory-atmosphere{position:absolute;z-index:0;inset:0 0 auto;height:min(1120px,95svh);overflow:hidden;pointer-events:none;will-change:transform}
+.inventory-atmosphere:before{content:"";position:absolute;inset:-8%;background:url('assets/showroom/abidi-showroom-hero-v1.png') center 42%/cover no-repeat;opacity:.13;filter:saturate(.65) contrast(.9);transform:scale(1.07)}
+.inventory-atmosphere:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#f6f2eab8 0%,#f1eee6ca 42%,#ece9e1 78%,#ece9e1 100%),linear-gradient(90deg,#d8b47225 1px,transparent 1px);background-size:auto,90px 100%;mask-image:linear-gradient(#000 0 76%,transparent)}
+.inventory-atmosphere span{position:absolute;z-index:2;top:13%;right:-6%;width:42vw;height:42vw;min-width:430px;min-height:430px;border:1px solid #ad7b3730;border-radius:50%;box-shadow:0 0 0 45px #ad7b3709,0 0 0 90px #52756708;transform:rotateX(68deg)}
+.inventory-section .section-heading{padding:40px 42px;border:1px solid #ffffffc7;background:#f8f6f0a3;box-shadow:0 25px 70px #273f5920;backdrop-filter:blur(14px)}
+.inventory-section .inventory-toolbar{box-shadow:0 22px 65px #233d5221}
+.experience{min-height:100svh;padding:165px 5vw 110px;display:grid;align-items:center;background:#07100e}
+.experience:before{content:"";position:absolute;z-index:-1;left:0;right:0;top:0;height:clamp(150px,15vw,225px);pointer-events:none;background:linear-gradient(180deg,#eee8dd 0%,#d9d6cd 14%,#8b9289aa 42%,#17302866 70%,transparent 100%)}
+.experience:after{content:"";position:absolute;z-index:1;left:5vw;right:5vw;top:clamp(48px,5vw,75px);height:1px;pointer-events:none;background:linear-gradient(90deg,transparent,#b9823f,#d9b47e,#b9823f,transparent);box-shadow:0 0 25px #dcb77b55}
+.experience-backdrop,.about-environment{position:absolute;z-index:-3;inset:-8%;pointer-events:none;will-change:transform}
+.experience-backdrop{background:url('assets/showroom/abidi-showroom-hero-v1.png') center 48%/cover no-repeat;transform:scale(1.08)}
+.experience-backdrop:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#06100ee8 0%,#07100ec2 41%,#07100e7b 72%,#07100ebd),linear-gradient(0deg,#07100ef2 0%,transparent 48%,#07100e9e 100%)}
+.experience-light{position:absolute;top:-15%;left:20%;width:22%;height:130%;background:linear-gradient(90deg,transparent,#f0bc7d1e,transparent);filter:blur(10px);transform:skewX(-15deg);mix-blend-mode:screen;will-change:transform}
+.experience-grid{position:absolute;inset:0;opacity:.18;background:linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:90px 90px;mask-image:linear-gradient(90deg,#000,transparent 75%)}
+.room-marker{position:absolute;z-index:2;top:105px;left:5vw;margin:0;color:#bdc9bf;font:600 8px/1 Arial,sans-serif;letter-spacing:.22em}
+.room-marker span{margin-right:13px;color:#e3b788;font:400 23px/1 Georgia,serif;letter-spacing:0}
+.experience-panel{position:relative;z-index:2;width:min(1260px,100%);margin:auto;padding:70px 0 0;border:0;border-top:1px solid #ffffff35;border-radius:0;background:transparent;box-shadow:none}
+.experience-panel:before{content:"SERVICES";right:-2%;top:-34px;color:#fff0;-webkit-text-stroke:1px #ffffff14;font:400 clamp(75px,13vw,190px)/1 Georgia,serif;letter-spacing:-.05em}
+.experience-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,360px);align-items:end;column-gap:60px}
+.experience-heading .eyebrow{color:#e3b788}
+.experience-panel h2{margin:18px 0 0;max-width:820px;color:#f5f2eb;font:400 clamp(48px,5.7vw,84px)/.98 Georgia,'Times New Roman',serif;letter-spacing:-.05em}
+.experience-panel h2 em{color:#e3b788;font-style:italic;font-weight:400}
+.experience-intro{margin:0 0 8px;padding-left:22px;border-left:1px solid #e3b78866;color:#bdc7bf;font-size:13px;line-height:1.75}
+.experience .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:70px;border:1px solid #ffffff24;background:#ffffff24}
+.experience .service-grid article{min-height:285px;padding:34px;border:0;border-radius:0;background:linear-gradient(145deg,#0b1714e8,#15231fd6);backdrop-filter:blur(12px);transition:background .35s,translate .35s}
+.experience .service-grid article:hover{translate:0 -8px;background:linear-gradient(145deg,#172a23f2,#1b3028e8)}
+.experience .service-grid article b{width:44px;height:44px;display:grid;place-items:center;border:1px solid #e3b78888;border-radius:50%;color:#e3b788;font:400 15px Georgia,serif}
+.experience .service-grid article h3{margin:58px 0 15px;color:#f6f1e9;font:400 25px/1.1 Georgia,serif}
+.experience .service-grid article p{max-width:280px;color:#aebbb2;font-size:12px;line-height:1.75}
+
+.about-section{min-height:100svh;padding:135px 7vw 115px;display:grid;grid-template-columns:minmax(350px,.95fr) minmax(390px,1.05fr);gap:9vw;align-items:center;background:#0a1512;color:#f6f2ea}
+.about-environment{background:url('assets/showroom/abidi-showroom-panorama-v2.png') 72% center/cover no-repeat;transform:scale(1.06)}
+.about-environment:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07110feb 0 38%,#07110fae 66%,#07110ee8),linear-gradient(0deg,#07110ff2,transparent 55%,#07110f8c)}
+.about-environment span{position:absolute;inset:12% 8% 10% 48%;border:1px solid #e3b78821;transform:skewX(-8deg)}
+.about-marker{left:auto;right:7vw}
+.about-art{height:min(68svh,680px);min-height:520px;position:relative;overflow:hidden;border:1px solid #d9bd9752;border-radius:2px 100px 2px 2px;background:linear-gradient(0deg,#08110ecb,transparent 60%),url('assets/showroom/abidi-showroom-hero-v1.png') 67% center/auto 112% no-repeat;box-shadow:25px 25px 0 #10241d,26px 26px 0 #e3b78843;transform:none}
+.about-art:before{content:"";position:absolute;inset:0;width:auto;height:auto;border:0;background:linear-gradient(115deg,transparent 35%,#f2c9961c 49%,transparent 62%);box-shadow:none;transform:translateX(-85%)}
+.about-art:after{content:"";position:absolute;left:35px;top:35px;right:35px;bottom:35px;width:auto;height:auto;border:1px solid #ffffff20;box-shadow:none;transform:none}
+.about-art .showroom-lines{position:absolute;inset:0;opacity:.6;background:repeating-linear-gradient(90deg,transparent 0 16%,#ffffff0e 16.2% 16.4%)}
+.about-art>span{position:absolute;z-index:2;left:55px;bottom:67px;color:#f5f0e7;text-align:left;font:400 clamp(48px,5vw,76px)/.78 Georgia,serif;letter-spacing:-.06em}
+.about-art>small{position:absolute;z-index:2;left:58px;bottom:35px;color:#e3b788;font:600 8px Arial,sans-serif;letter-spacing:.18em}
+.about-copy{position:relative;max-width:610px;padding:60px;border:1px solid #ffffff25;background:#0b1714c9;backdrop-filter:blur(18px)}
+.about-copy:before{content:"";position:absolute;left:-1px;top:48px;width:42px;height:1px;background:#e3b788}
+.about-copy .eyebrow{color:#e3b788}
+.about-copy h2{margin:24px 0 30px;color:#f6f2ea;font:400 clamp(48px,5vw,76px)/.96 Georgia,serif;letter-spacing:-.05em}
+.about-copy>p{max-width:470px;color:#b8c3bb;font-size:14px;line-height:1.85}
+.about-copy .text-link{display:inline-flex;width:max-content;align-items:center;gap:15px;margin-top:24px;color:#f0e6d8;border-color:#e3b788;white-space:nowrap}
+.about-copy .text-link span{margin-left:0}
+
+/* Consultation desk: a quiet final room with direct, useful contact actions. */
+.contact-section{position:relative;isolation:isolate;overflow:hidden;margin:0;padding:clamp(105px,10vw,160px) 7vw;grid-template-columns:minmax(320px,.88fr) minmax(520px,1.12fr);gap:clamp(55px,8vw,125px);align-items:center;background:linear-gradient(135deg,#f7f4ec 0%,#e8ece9 52%,#dce5e3 100%);color:#17334c}
+.contact-section:after{content:"ABIDI";display:block;position:absolute;z-index:-1;left:-1vw;bottom:-3vw;color:transparent;-webkit-text-stroke:1px #17334c0d;font:400 clamp(110px,19vw,290px)/.7 Georgia,serif;letter-spacing:-.07em}
+.contact-atmosphere{position:absolute;z-index:-3;inset:-7%;pointer-events:none;background:url('assets/showroom/abidi-showroom-panorama-v2.png') 60% center/cover no-repeat;filter:saturate(.5) contrast(.9);opacity:.18;transform:scale(1.06)}
+.contact-atmosphere:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#f7f4ecf5 0%,#f1f1ebe0 46%,#e2e9e6c4 75%,#dce5e3e8),linear-gradient(0deg,#e4e9e5f5,transparent 52%,#f6f3ebd6)}
+.contact-atmosphere span{position:absolute;right:4%;top:9%;width:43vw;height:43vw;border:1px solid #a875342c;border-radius:50%;box-shadow:0 0 0 52px #a8753408,0 0 0 104px #17334c08;transform:rotateX(68deg)}
+.contact-copy{position:relative;z-index:2;max-width:570px}
+.contact-index{display:flex;align-items:center;gap:14px;margin:0 0 55px!important;color:#718078!important;font:600 8px Arial,sans-serif!important;letter-spacing:.22em}
+.contact-index span{color:#ad762a;font:400 24px Georgia,serif;letter-spacing:0}
+.contact-section .eyebrow{color:#a66e20}
+.contact-section h2{max-width:570px;margin:22px 0 28px;color:#17334c;font:400 clamp(54px,5.8vw,88px)/.92 Georgia,serif;letter-spacing:-.055em}
+.contact-section .contact-copy>p:not(.eyebrow):not(.contact-index){max-width:490px;color:#607181;font-size:14px;line-height:1.85}
+.contact-direct{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:42px;border:0;background:transparent}
+.contact-direct a{position:relative;min-height:105px;padding:24px;border:1px solid #17334c1f;background:#ffffffa8;box-shadow:0 15px 45px #29425610;backdrop-filter:blur(12px);transition:border-color .25s,background .25s,transform .25s}
+.contact-direct a:hover{z-index:2;border-color:#b78238;background:#fff;transform:translateY(-4px)}
+.contact-direct small,.contact-direct strong{display:block}.contact-direct small{margin-bottom:12px;color:#a66e20;font-size:7px;letter-spacing:.2em}.contact-direct strong{color:#17334c;font:400 clamp(17px,1.5vw,22px) Georgia,serif}.contact-direct a>span{position:absolute;right:18px;top:18px;color:#a66e20}
+.contact-section form{position:relative;z-index:2;padding:clamp(30px,4vw,58px);grid-template-columns:1fr 1fr;gap:25px 22px;border:1px solid #ffffffd6;background:#ffffffd9;color:#17334c;box-shadow:0 35px 100px #29425620;backdrop-filter:blur(20px)}
+.contact-section form:before{content:"";position:absolute;left:-1px;top:42px;width:4px;height:74px;background:#bf8742}
+.form-heading{grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;margin-bottom:12px;padding-bottom:22px;border-bottom:1px solid #17342b20}
+.form-heading span{color:#17334c;font:600 11px Arial,sans-serif;letter-spacing:.22em}.form-heading small{color:#73808a;font-size:10px}
+.contact-section label>span{margin-bottom:8px;color:#66756f;font-size:8px;letter-spacing:.16em}
+.contact-section input,.contact-section textarea{padding:11px 0 13px;border:0;border-bottom:1px solid #17334c30;border-radius:0;background:transparent;color:#17334c;transition:border-color .25s,box-shadow .25s}
+.contact-section textarea{min-height:88px;resize:vertical}
+.contact-section input::placeholder,.contact-section textarea::placeholder{color:#89938e}
+.contact-section input:focus,.contact-section textarea:focus{border-color:#ae7632;box-shadow:0 1px 0 #ae7632;outline:0}
+.contact-section .button{min-height:58px;margin-top:6px;border:1px solid #17334c;border-radius:0;background:#17334c;color:#fff;box-shadow:none}
+.contact-section .button:hover{background:#244d6e}.contact-section .button span{color:#e3bd7e}
+.form-note{margin:-9px 0 0;color:#74817c;font-size:9px;text-align:center}.form-status{min-height:17px;margin:-12px 0 0;color:#2d654f;font-size:11px;text-align:center}
+
+@media(max-width:900px){.experience{padding:150px 24px 80px}.experience-heading{grid-template-columns:1fr}.experience-intro{max-width:480px;margin-top:24px}.experience .service-grid{margin-top:45px}.experience .service-grid article{padding:26px}.about-section{padding:110px 30px 90px;grid-template-columns:1fr 1fr;gap:45px}.about-art{min-height:480px}.about-copy{padding:42px 35px}.contact-section{grid-template-columns:1fr;padding-inline:clamp(25px,7vw,65px)}.contact-copy{max-width:680px}.contact-section form{width:100%}}
+@media(max-width:620px){.inventory-section{padding-bottom:110px!important}.inventory-atmosphere{height:720px}.inventory-atmosphere:before{opacity:.1}.inventory-atmosphere span{top:20%;right:-70%;min-width:390px;min-height:390px}.inventory-section .section-heading{padding:28px 22px}.experience{min-height:auto;padding:145px 16px 75px}.experience:before{height:140px}.experience:after{left:20px;right:20px;top:47px}.room-marker{top:82px;left:20px}.experience-panel{padding-top:45px}.experience-panel:before{top:3px;font-size:25vw}.experience-panel h2{font-size:clamp(43px,13vw,58px)}.experience-intro{padding-left:15px;font-size:12px}.experience .service-grid{grid-template-columns:1fr}.experience .service-grid article{min-height:210px;padding:26px 24px}.experience .service-grid article h3{margin-top:33px}.about-section{min-height:auto;padding:95px 20px 85px;grid-template-columns:1fr;gap:55px}.about-marker{top:34px;left:20px;right:auto}.about-art{height:62svh;min-height:430px;border-radius:2px 65px 2px 2px;box-shadow:12px 12px 0 #10241d,13px 13px 0 #e3b78843}.about-art>span{left:34px;bottom:62px}.about-art>small{left:36px;right:25px;bottom:31px}.about-copy{padding:42px 25px}.about-copy h2{font-size:clamp(43px,13vw,58px)}.contact-section{padding:90px 18px 70px}.contact-index{margin-bottom:35px!important}.contact-section h2{font-size:clamp(49px,14vw,64px)}.contact-direct{grid-template-columns:1fr}.contact-direct a{min-height:88px;padding:20px}.contact-section form{padding:32px 20px;grid-template-columns:1fr}.form-heading{align-items:flex-start;flex-direction:column;gap:8px}.contact-section form:before{top:31px;height:58px}.contact-atmosphere span{right:-75%;width:480px;height:480px}.form-note,.form-status{grid-column:1!important}}
+@media(prefers-reduced-motion:reduce){.inventory-atmosphere,.experience-backdrop,.about-environment,.experience-light,.about-art,.about-art:before,.contact-atmosphere{transform:none!important}}
+
+/* Sales lounge / final art direction: crisp navy, warm ivory, never red. */
+.contact-section{min-height:900px;padding:125px 7vw;grid-template-columns:minmax(360px,.92fr) minmax(540px,1.08fr);gap:0;background:linear-gradient(145deg,#f8f5ed 0%,#ece9e1 58%,#e3e8e3 100%);color:#17372d}
+.contact-section:before{content:"";position:absolute;z-index:-2;inset:0;background:radial-gradient(circle at 82% 18%,#fff 0 5%,transparent 28%),linear-gradient(90deg,#b8873b1c 1px,transparent 1px);background-size:auto,110px 100%;mask-image:linear-gradient(90deg,transparent,#000 28%,#000 78%,transparent)}
+.contact-section:after{left:auto;right:-2vw;bottom:-1vw;-webkit-text-stroke-color:#10241d0d;font-size:clamp(120px,17vw,260px)}
+.contact-atmosphere{inset:0;opacity:1;background:none;filter:none;transform:none}
+.contact-atmosphere:before{background:radial-gradient(ellipse at 18% 55%,#cca05d27,transparent 35%),radial-gradient(circle at 88% 68%,#52756720,transparent 28%)}
+.contact-atmosphere span{top:8%;right:-11%;width:58vw;height:58vw;border-color:#b27d3036;box-shadow:0 0 0 70px #b27d3008,0 0 0 140px #10241d06}
+.contact-copy{min-height:650px;max-width:none;padding:70px 85px 70px 65px;border:1px solid #ffffff17;border-radius:48px 0 0 6px;background:radial-gradient(circle at 12% 4%,#315f50 0%,transparent 38%),linear-gradient(145deg,#173c31,#102b24 62%,#0b1c17);box-shadow:0 38px 90px #10241d30;color:#fff}
+.contact-copy:after{content:"";position:absolute;right:35px;bottom:35px;width:75px;height:75px;border-right:1px solid #e3bd7e66;border-bottom:1px solid #e3bd7e66}
+.contact-index{margin-bottom:60px!important;color:#b8c6d0!important}.contact-index span{color:#e4bd7b}
+.contact-section .contact-copy .eyebrow{color:#e4bd7b}
+.contact-section .contact-copy h2{max-width:500px;color:#fff;font-size:clamp(56px,5.4vw,84px)}
+.contact-section .contact-copy>p:not(.eyebrow):not(.contact-index){color:#c6d1d8;max-width:450px}
+.contact-direct{margin-top:46px;gap:0;border-top:1px solid #ffffff26;border-bottom:1px solid #ffffff26}
+.contact-direct a{min-height:104px;padding:25px 22px;border:0;border-right:1px solid #ffffff26;background:transparent;box-shadow:none;backdrop-filter:none}
+.contact-direct a:last-child{border-right:0}.contact-direct a:hover{border-color:#ffffff26;background:#ffffff0c;transform:none}
+.contact-direct small{color:#e4bd7b}.contact-direct strong{color:#fff}.contact-direct a>span{color:#e4bd7b}
+.contact-section form{z-index:4;min-height:590px;margin-left:-36px;padding:55px 58px;border:1px solid #fff;border-radius:6px 48px 6px 6px;background:#fffdf8;color:#17372d;box-shadow:0 42px 100px #10241d38;align-self:center}
+.contact-section form:before{top:54px;width:5px;height:58px;background:#c18a3d}
+.form-heading{margin-bottom:8px;border-color:#17372d1c}.form-heading span{color:#17372d}.form-heading small{color:#748078}
+.contact-section label>span{color:#69776f}.contact-section input,.contact-section textarea{border-color:#17372d2d;color:#17372d}.contact-section input:focus,.contact-section textarea:focus{border-color:#bd8232;box-shadow:0 1px 0 #bd8232}
+.contact-section .button{border-color:#17372d;background:#17372d}.contact-section .button:hover{background:#265344}
+.form-note{color:#74828c}.form-status{color:#2e705a}
+
+@media(max-width:900px){.contact-section{min-height:auto;padding:105px 28px;grid-template-columns:1fr;gap:18px}.contact-copy{min-height:auto;padding:60px 50px;border-radius:40px 6px 6px 6px}.contact-section form{min-height:0;margin-left:0;border-radius:6px 40px 6px 6px}}
+@media(max-width:620px){.contact-section{padding:80px 14px 65px}.contact-copy{padding:43px 24px 34px;border-radius:30px 4px 4px 4px}.contact-copy:after{right:20px;bottom:20px;width:45px;height:45px}.contact-index{margin-bottom:36px!important}.contact-section .contact-copy h2{font-size:clamp(49px,14vw,62px)}.contact-direct{grid-template-columns:1fr;margin-top:36px}.contact-direct a{min-height:85px;padding:20px 16px;border-right:0;border-bottom:1px solid #ffffff24}.contact-direct a:last-child{border-bottom:0}.contact-section form{padding:38px 21px 32px;border-radius:4px 30px 4px 4px}.contact-section form:before{top:38px;height:48px}.form-heading{gap:7px}}
+
+/* Corrected contact geometry: centred, readable and never overlapping. */
+.contact-section{display:block;min-height:auto;padding:clamp(95px,9vw,140px) clamp(24px,5vw,76px);scroll-margin-top:88px}
+.contact-section>.contact-atmosphere,.contact-section>.contact-shell{opacity:1!important;transform:none!important;clip-path:none!important}
+.contact-shell{position:relative;z-index:3;display:grid;grid-template-columns:minmax(410px,.92fr) minmax(560px,1.08fr);align-items:center;gap:24px;width:min(1320px,100%);margin:0 auto}
+.contact-shell .contact-copy{min-height:640px;padding:64px clamp(45px,4.2vw,70px);border-radius:42px 6px 6px 42px}
+.contact-shell .contact-copy h2{font-size:clamp(62px,5.2vw,84px);line-height:.94}
+.contact-shell .contact-copy>p:not(.eyebrow):not(.contact-index){font-size:15px}
+.contact-shell #contactForm{min-height:610px;margin:0;padding:52px clamp(38px,4vw,58px);border-radius:6px 42px 42px 6px}
+.contact-shell #contactForm input{min-height:48px;font-size:16px}.contact-shell #contactForm textarea{min-height:105px;font-size:16px}
+.contact-shell #contactForm .button{min-height:62px;font-size:14px}
+
+@media(max-width:1050px){.contact-shell{grid-template-columns:1fr;gap:18px;max-width:760px}.contact-shell .contact-copy,.contact-shell #contactForm{min-height:auto;margin:0}.contact-shell .contact-copy{border-radius:36px 6px 6px 6px}.contact-shell #contactForm{border-radius:6px 6px 36px 6px}}
+@media(max-width:620px){.contact-section{padding:72px 14px}.contact-shell{gap:12px}.contact-shell .contact-copy{padding:42px 24px 30px;border-radius:28px 4px 4px 4px}.contact-shell .contact-copy h2{font-size:clamp(48px,14vw,60px)}.contact-shell #contactForm{padding:36px 21px 30px;border-radius:4px 4px 28px 4px}.contact-shell #contactForm input,.contact-shell #contactForm textarea{font-size:16px}}

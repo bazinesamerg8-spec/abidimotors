@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Abidi Motors — premium vehicles, clear prices and direct assistance.">
+  <title>Abidi Motors | Premium Auto Showroom</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="showroom.css">
+  <link rel="stylesheet" href="atelier.css">
+  <link rel="stylesheet" href="dealership.css">
+  <link rel="stylesheet" href="tour.css">
+  <link rel="stylesheet" href="rooms.css?v=20260910-4">
+  <link rel="stylesheet" href="detail.css?v=20260909-2">
+  <link rel="stylesheet" href="mobile.css?v=20260909-3">
+</head>
+<body>
+  <div class="ambient-noise" aria-hidden="true"></div>
+  <div class="cursor-aura" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Abidi Motors home">
+      <span class="brand-mark">AM</span>
+      <span><strong>ABIDI MOTORS</strong><small data-i18n="brandLine">PREMIUM AUTO SHOWROOM</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#inventory" data-i18n="navCars">Cars</a>
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="favoritesButton" aria-label="Favourites">♡ <span id="favoriteCount">0</span></button>
+      <button class="language-button" id="languageButton">العربية</button>
+      <a class="button button-small" href="#contact" data-i18n="talk">Talk to sales</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="showroom-journey">
+    <section class="hero showroom-tour" id="home" data-room="arrival" aria-label="Interactive Abidi Motors showroom">
+      <div class="tour-scene" aria-hidden="true">
+        <div class="tour-architecture"></div><div class="tour-shade"></div><div class="tour-light"></div><div class="tour-floor-line"></div>
+        <span class="tour-wall-sign">ABIDI<span>MOTORS / PRIVATE SHOWROOM</span></span>
+      </div>
+      <div class="tour-topline"><span><i></i> THE DIGITAL SHOWROOM</span><button type="button" id="tourMotion" aria-pressed="false">Pause motion <span aria-hidden="true">Ⅱ</span></button></div>
+      <div class="tour-room-copy">
+        <p class="tour-kicker" id="tourKicker">01 / THE ARRIVAL</p>
+        <h1 id="tourTitle">Your next chapter.<br><em>Parked here.</em></h1>
+        <p id="tourDescription">Step into Abidi Motors. Look around, get closer to your next car, and make yourself at home.</p>
+        <div class="tour-actions"><button type="button" class="tour-primary" id="tourAction">Enter the showroom <span aria-hidden="true">↗</span></button><a href="#inventory" class="tour-text-link">Browse the collection <span aria-hidden="true">→</span></a></div>
+        <div class="tour-room-facts"><span id="tourFact">YOUR PRIVATE VISIT</span><span id="tourFactDetail">Explore at your own pace</span></div>
+      </div>
+      <div class="tour-gallery" id="tourGallery" hidden aria-label="Vehicles in the gallery"></div>
+      <button type="button" class="tour-hotspot" id="tourHotspot"><span aria-hidden="true">+</span><span id="tourHotspotLabel">Begin the walkthrough</span></button>
+      <div class="tour-bottom">
+        <div class="tour-location"><span class="tour-small">YOU ARE HERE</span><strong id="tourLocation">The arrival</strong></div>
+        <nav class="tour-route" aria-label="Showroom rooms">
+          <button type="button" data-room-target="arrival" aria-current="step"><span>01</span> Arrival</button><i aria-hidden="true"></i>
+          <button type="button" data-room-target="passage"><span>02</span> Walk</button><i aria-hidden="true"></i>
+          <button type="button" data-room-target="collection"><span>03</span> Collection</button>
+        </nav>
+        <div class="tour-navigation"><button type="button" id="tourPrevious" aria-label="Previous room" disabled>←</button><button type="button" id="tourNext" aria-label="Next room">→</button></div>
+      </div>
+      <p class="tour-status" id="tourStatus" role="status" aria-live="polite"></p>
+    </section>
+    </div>
+
+    <section class="trust-strip" aria-label="Why choose Abidi Motors">
+      <article><b>31 vehicles</b><span>A focused selection</span></article>
+      <article><b>Verified information</b><span>Clear prices and availability</span></article>
+      <article><b>Personal assistance</b><span>From selection to delivery</span></article>
+      <article><b>Self-hosted 360°</b><span>Explore selected cars</span></article>
+    </section>
+
+    <section class="brand-strip" aria-label="Available brands">
+      <div class="brand-track"><span>VOLKSWAGEN</span><i>✦</i><span>AUDI</span><i>✦</i><span>CHANGAN</span><i>✦</i><span>GEELY</span><i>✦</i><span>GAC</span><i>✦</i><span>JETOUR</span><i>✦</i><span>KIA</span><i>✦</i><span>VOLKSWAGEN</span><i>✦</i><span>AUDI</span></div>
+    </section>
+
+    <section class="section inventory-section" id="inventory">
+      <div class="inventory-atmosphere" aria-hidden="true"><span></span></div>
+      <div class="section-heading reveal">
+        <div><p class="eyebrow" data-i18n="collection">OUR COLLECTION</p><h2 data-i18n="findCar">Exceptional cars.<br><em>One destination.</em></h2></div>
+        <p data-i18n="inventoryText">Browse current arrivals and contact our team for confirmed availability, specifications and final pricing.</p>
+      </div>
+      <div class="inventory-toolbar reveal">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search brand or model…" data-i18n-placeholder="search"></label>
+        <select id="brandFilter" aria-label="Filter by brand"><option value="all">All brands</option></select>
+        <select id="priceFilter" aria-label="Filter by price">
+          <option value="all" data-i18n="allPrices">All prices</option>
+          <option value="under300">Under 300M</option><option value="300to450">300M — 450M</option><option value="over450">Over 450M</option>
+        </select>
+        <select id="bodyFilter" aria-label="Filter by body type"><option value="all">All body types</option><option value="SUV">SUV</option><option value="Sedan">Sedan</option><option value="Hatchback">Hatchback</option></select>
+        <select id="transmissionFilter" aria-label="Filter by transmission"><option value="all">All transmissions</option><option value="Automatic">Automatic</option><option value="Manual">Manual</option></select>
+        <select id="sortSelect" aria-label="Sort vehicles"><option value="featured" data-i18n="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select>
+      </div>
+      <div class="results-meta"><span id="resultCount"></span><button id="clearFilters" class="text-button" data-i18n="clear">Clear filters</button></div>
+      <div class="vehicle-grid" id="vehicleGrid"></div>
+      <button class="button button-outline load-more" id="loadMore" data-i18n="loadMore">Load more vehicles</button>
+    </section>
+
+    <section class="experience section" id="services">
+      <div class="experience-backdrop" aria-hidden="true"><span class="experience-light"></span><span class="experience-grid"></span></div>
+      <p class="room-marker" aria-hidden="true"><span>04</span> THE CONCIERGE FLOOR</p>
+      <div class="experience-panel reveal">
+        <div class="experience-heading"><div><p class="eyebrow" data-i18n="different">THE ABIDI DIFFERENCE</p><h2 data-i18n="moreThan">More than a showroom.<br><em>A better way to buy.</em></h2></div><p class="experience-intro">Three quiet steps between discovering the right car and driving it home.</p></div>
+        <div class="service-grid">
+          <article><b>01</b><h3 data-i18n="sourcing">Careful sourcing</h3><p data-i18n="sourcingText">Selected vehicles from established manufacturers and verified supply channels.</p></article>
+          <article><b>02</b><h3 data-i18n="guidance">Personal guidance</h3><p data-i18n="guidanceText">A sales specialist helps you compare models, trims and ownership needs.</p></article>
+          <article><b>03</b><h3 data-i18n="transparent">Clear information</h3><p data-i18n="transparentText">Straightforward availability and price-status information before you decide.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="about-environment" aria-hidden="true"><span></span></div>
+      <p class="room-marker about-marker" aria-hidden="true"><span>05</span> THE PRIVATE SALON</p>
+      <div class="about-art reveal"><div class="showroom-lines"></div><span>ABIDI<br>MOTORS</span><small>EST. IN ALGERIA · BUILT ON TRUST</small></div>
+      <div class="about-copy reveal"><p class="eyebrow" data-i18n="ourStory">OUR STORY</p><h2 data-i18n="localTrust">Local trust.<br>International choice.</h2><p data-i18n="aboutText">Abidi Motors connects drivers with carefully selected vehicles and practical guidance. From the first comparison to delivery, our team stays close and keeps the process clear.</p><a class="text-link" href="#contact" data-i18n="meet">Meet our team <span>→</span></a></div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-atmosphere" aria-hidden="true"><span></span></div>
+      <div class="contact-shell">
+        <div class="contact-copy">
+        <p class="contact-index"><span>06</span> THE CONSULTATION DESK</p>
+        <p class="eyebrow" data-i18n="ready">READY WHEN YOU ARE</p>
+        <h2 data-i18n="start">Let’s find your next car.</h2>
+        <p data-i18n="contactText">Tell us what you are looking for. Our team will contact you with matching vehicles and confirmed details.</p>
+        <div class="contact-direct">
+          <a href="https://wa.me/213795263552" target="_blank" rel="noreferrer"><small>WHATSAPP</small><strong>0795 26 35 52</strong><span>↗</span></a>
+          <a href="tel:+213795263552"><small>CALL THE SHOWROOM</small><strong>0795 26 35 52</strong><span>↗</span></a>
+        </div>
+        </div>
+        <form id="contactForm">
+        <div class="form-heading"><span>PRIVATE ENQUIRY</span><small>Usually answered directly on WhatsApp</small></div>
+        <label><span data-i18n="name">Your name</span><input required name="name" autocomplete="name" placeholder="Full name"></label>
+        <label><span data-i18n="phone">Phone / WhatsApp</span><input required type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="05 / 06 / 07…"></label>
+        <label class="full"><span data-i18n="interest">Vehicle of interest</span><input name="vehicle" id="vehicleInterest" placeholder="e.g. Jetour T2"></label>
+        <label class="full"><span data-i18n="message">Message</span><textarea name="message" rows="3" placeholder="Tell us what you would like to know"></textarea></label>
+        <button class="button full" type="submit" data-i18n="send">Continue on WhatsApp <span>↗</span></button>
+        <p class="form-note full">Your enquiry is prepared here, then sent securely through WhatsApp.</p>
+        <p class="form-status full" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#home"><span class="brand-mark">AM</span><span><strong>ABIDI MOTORS</strong><small>PREMIUM AUTO SHOWROOM</small></span></a>
+    <p>© 2026 Abidi Motors. <span data-i18n="rights">All rights reserved.</span></p>
+    <div><a href="#inventory" data-i18n="navCars">Cars</a><a href="#services" data-i18n="navServices">Services</a></div>
+  </footer>
+
+  <dialog id="vehicleModal" class="vehicle-modal"><div id="modalContent"></div></dialog>
+  <dialog id="compareModal" class="compare-modal"><div id="compareContent"></div></dialog>
+  <div class="site-toast" id="siteToast" role="status" aria-live="polite"></div>
+  <aside class="compare-bar" id="compareBar"><span><b id="compareCount">0</b> selected to compare</span><div id="compareNames"></div><button class="button button-small" id="compareNow">Compare</button><button class="icon-button" id="clearCompare" aria-label="Clear comparison">×</button></aside>
+  <script src="data.js"></script>
+  <script src="script.js?v=20260909-4"></script>
+  <script src="assets/vendor/gsap/gsap.min.js"></script>
+  <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="showroom.js?v=20260910-4"></script>
+  <script src="tour.js"></script>
+</body>
+</html>

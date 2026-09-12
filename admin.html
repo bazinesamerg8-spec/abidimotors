@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10271f">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Abidi Motors — Control Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600&display=swap">
+  <link rel="stylesheet" href="admin.css?v=20260910-1">
+</head>
+<body class="admin-body">
+  <div class="admin-noise" aria-hidden="true"></div>
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-top">
+      <a class="admin-brand" href="index.html" aria-label="Abidi Motors website"><span>AM</span><div><strong>ABIDI MOTORS</strong><small>CONTROL CENTER</small></div></a>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close navigation">×</button>
+    </div>
+    <p class="nav-label">WORKSPACE</p>
+    <nav class="admin-nav" aria-label="Administration">
+      <button class="active" data-view="dashboard"><i>01</i><span>Overview</span></button>
+      <button data-view="inventory"><i>02</i><span>Inventory</span><b id="navVehicleCount">31</b></button>
+      <button data-view="enquiries"><i>03</i><span>Enquiries</span><b id="navLeadCount">0</b></button>
+    </nav>
+    <div class="sidebar-status"><span></span><div><b>Local workspace</b><small>Changes saved in this browser</small></div></div>
+    <a class="back-site" href="index.html" target="_blank">View live showroom <span>↗</span></a>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div class="topbar-start"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><div><small>ABIDI MOTORS / <span id="currentSection">OVERVIEW</span></small><strong id="todayLabel"></strong></div></div>
+      <div class="admin-user"><span>A</span><div><b>Administrator</b><small>Full catalogue access</small></div></div>
+    </header>
+
+    <section class="admin-view active" id="dashboardView" data-admin-view="dashboard">
+      <div class="dashboard-hero">
+        <div><p class="admin-eyebrow">SHOWROOM CONTROL</p><h1>Good <span id="dayPeriod">morning</span>.<br><em>Everything in one view.</em></h1><p>Monitor the public catalogue, keep pricing accurate and respond to new customer requests.</p></div>
+        <div class="hero-actions"><button class="admin-button primary" data-go-view="inventory">Manage inventory <span>→</span></button><a class="admin-button ghost" href="index.html" target="_blank">Open website <span>↗</span></a></div>
+      </div>
+
+      <div class="metric-grid">
+        <article><div class="metric-icon">V</div><small>PUBLISHED VEHICLES</small><strong id="activeMetric">0</strong><span id="activeMetricNote">Live in the catalogue</span></article>
+        <article><div class="metric-icon">N</div><small>NEW ENQUIRIES</small><strong id="leadMetric">0</strong><span id="leadMetricNote">Waiting for response</span></article>
+        <article><div class="metric-icon">A</div><small>ARRIVING SOON</small><strong id="arrivingMetric">0</strong><span>Upcoming showroom stock</span></article>
+        <article><div class="metric-icon">!</div><small>NEEDS ATTENTION</small><strong id="attentionMetric">0</strong><span>Missing price or hidden</span></article>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="admin-panel health-panel">
+          <div class="panel-heading"><div><p class="admin-eyebrow">CATALOGUE HEALTH</p><h2>Publication readiness</h2></div><button class="text-action" data-go-view="inventory">Review inventory →</button></div>
+          <div class="health-score"><strong id="healthScore">100%</strong><span>Catalogue completeness</span></div>
+          <div class="health-bars">
+            <div><span><b>Published</b><small id="publishedSummary"></small></span><i><b id="publishedBar"></b></i></div>
+            <div><span><b>With confirmed price</b><small id="pricedSummary"></small></span><i><b id="pricedBar"></b></i></div>
+            <div><span><b>With vehicle media</b><small id="mediaSummary"></small></span><i><b id="mediaBar"></b></i></div>
+          </div>
+        </section>
+        <section class="admin-panel recent-panel">
+          <div class="panel-heading"><div><p class="admin-eyebrow">CUSTOMER DESK</p><h2>Latest enquiries</h2></div><button class="text-action" data-go-view="enquiries">View all →</button></div>
+          <div id="recentLeads" class="recent-leads"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="admin-view" id="inventoryView" data-admin-view="inventory" hidden>
+      <div class="view-heading"><div><p class="admin-eyebrow">CATALOGUE / 2026</p><h1>Vehicle inventory</h1><p>Update commercial information without changing the approved model list.</p></div><div class="view-actions"><button class="admin-button ghost dark" id="exportInventory">Export JSON</button><button class="admin-button primary" id="resetInventory">Restore catalogue</button></div></div>
+      <section class="admin-panel inventory-panel">
+        <div class="inventory-tools">
+          <label class="admin-search"><span>⌕</span><input id="adminSearch" type="search" placeholder="Search brand or model…"></label>
+          <select id="adminStatusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option>In stock</option><option>Arriving</option><option>On request</option><option>Reserved</option><option>Sold</option></select>
+          <select id="adminVisibilityFilter" aria-label="Filter by visibility"><option value="all">All visibility</option><option value="published">Published</option><option value="hidden">Hidden</option></select>
+        </div>
+        <div class="table-meta"><span id="inventoryResultCount">31 vehicles</span><small>The approved catalogue is protected: brand and model names cannot be deleted here.</small></div>
+        <div class="table-wrap">
+          <table class="inventory-table"><thead><tr><th>VEHICLE</th><th>PRICE</th><th>STATUS</th><th>VISIBILITY</th><th>FEATURED</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="adminRows"></tbody></table>
+        </div>
+        <div class="empty-state" id="inventoryEmpty" hidden><b>No vehicles found</b><span>Try changing your search or filters.</span></div>
+      </section>
+    </section>
+
+    <section class="admin-view" id="enquiriesView" data-admin-view="enquiries" hidden>
+      <div class="view-heading"><div><p class="admin-eyebrow">CUSTOMER RELATIONS</p><h1>Sales enquiries</h1><p>Review requests captured by the website and continue the conversation on WhatsApp.</p></div><div class="view-actions"><button class="admin-button ghost dark" id="exportLeads">Export enquiries</button></div></div>
+      <section class="admin-panel leads-panel">
+        <div class="inventory-tools lead-tools">
+          <label class="admin-search"><span>⌕</span><input id="leadSearch" type="search" placeholder="Search name, phone or vehicle…"></label>
+          <select id="leadStatusFilter" aria-label="Filter enquiry status"><option value="all">All enquiries</option><option>New</option><option>Contacted</option><option>Qualified</option><option>Closed</option></select>
+        </div>
+        <div class="lead-grid" id="leadGrid"></div>
+        <div class="empty-state" id="leadEmpty" hidden><b>No enquiries yet</b><span>New contact-form requests will appear here automatically.</span></div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="editDialog" class="admin-dialog edit-dialog">
+    <form id="editForm">
+      <button type="button" class="dialog-close" data-close-dialog aria-label="Close">×</button>
+      <div class="editor-preview"><img id="editPhoto" alt=""><span id="editPreviewStatus"></span></div>
+      <div class="editor-fields">
+        <p class="admin-eyebrow">INVENTORY EDITOR</p><h2 id="editTitle">Edit vehicle</h2><p class="dialog-intro">Update the information customers see in the public collection.</p><input type="hidden" name="id">
+        <div class="form-row"><label>Brand<input name="brand" readonly></label><label>Model / trim<input name="model" readonly></label></div>
+        <div class="form-row"><label>Display price (M)<input name="price" type="number" min="0" inputmode="numeric" placeholder="Leave empty for on request"></label><label>Status<select name="status"><option>In stock</option><option>Arriving</option><option>On request</option><option>Reserved</option><option>Sold</option></select></label></div>
+        <div class="switch-row"><label><input type="checkbox" name="published"><span></span><div><b>Published</b><small>Visible in the public catalogue</small></div></label><label><input type="checkbox" name="featured"><span></span><div><b>Featured</b><small>Prioritized in catalogue sorting</small></div></label></div>
+        <div class="dialog-actions"><button type="button" class="admin-button ghost dark" data-close-dialog>Cancel</button><button class="admin-button primary" type="submit">Save changes</button></div><p id="saveStatus" class="save-status" role="status"></p>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="leadDialog" class="admin-dialog lead-dialog"><div id="leadDialogContent"></div></dialog>
+  <div class="admin-toast" id="adminToast" role="status" aria-live="polite"></div>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <script src="data.js"></script><script src="admin.js?v=20260910-1"></script>
+</body>
+</html>
