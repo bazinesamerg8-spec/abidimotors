@@ -121,10 +121,43 @@ input, select, textarea { min-width: 0; }
   .tour-navigation button { width: 44px; height: 44px; }
 
   .section { padding-inline: max(20px, env(safe-area-inset-left)); }
-  .trust-strip { grid-template-columns: 1fr 1fr !important; padding: 0 max(12px, env(safe-area-inset-left)) !important; }
-  .trust-strip article { min-height: 94px; padding: 18px 12px; }
-  .trust-strip article:nth-child(odd) { border-right: 1px solid var(--am-line); }
-  .trust-strip article:nth-child(3) { border-bottom: 0; }
+  .trust-strip {
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)) !important;
+    gap: 10px;
+    padding: 14px max(12px, env(safe-area-inset-left)) !important;
+    background: #f3efe7;
+  }
+  .trust-strip article,
+  .trust-strip article:nth-child(n) {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    min-width: 0;
+    min-height: 82px;
+    padding: 14px 12px;
+    border: 1px solid #d9d1c4;
+    border-radius: 10px;
+    background: #fffdf9;
+  }
+  .trust-strip article:before {
+    position: static;
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: center;
+    width: 28px;
+    height: 28px;
+    border-color: #466550;
+    color: #466550;
+  }
+  .trust-strip b,
+  .trust-strip span {
+    grid-column: 2;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .trust-strip b { align-self: end; font-size: 11px; line-height: 1.3; }
+  .trust-strip span { align-self: start; margin-top: 3px; font-size: 9px; line-height: 1.35; }
   .inventory-toolbar { gap: 9px; }
   .inventory-toolbar input,
   .inventory-toolbar select,
@@ -336,8 +369,7 @@ html.performance-lite { scroll-behavior:auto; }
 .performance-lite .about-section,
 .performance-lite .contact-section,
 .performance-lite footer { content-visibility:auto; contain-intrinsic-size:auto 900px; }
-.performance-lite .stage-orbit,
-.performance-lite .brand-track { animation:none!important; }
+.performance-lite .stage-orbit { animation:none!important; }
 .performance-lite .section-heading,
 .performance-lite .experience-panel,
 .performance-lite .about-art,
@@ -364,3 +396,39 @@ html.performance-lite { scroll-behavior:auto; }
 /* Automatic tour: one viewport, no scroll-controlled room navigation. */
 .showroom-journey { height:auto!important; min-height:100svh; }
 .showroom-tour.hero { position:relative!important; top:auto; }
+
+/* Lightweight, seamless phone ticker. A duplicated set prevents empty gaps. */
+.brand-track .brand-set { display:contents; }
+.brand-track .brand-set[aria-hidden="true"] { display:none; }
+
+@media (max-width: 820px) {
+  .brand-strip { overflow:hidden; }
+  .brand-track,
+  .performance-lite .brand-track {
+    display:flex;
+    justify-content:flex-start;
+    flex-wrap:nowrap;
+    gap:0;
+    width:max-content;
+    animation:mobileBrandTicker 18s linear infinite!important;
+    will-change:transform;
+  }
+  .brand-track .brand-set,
+  .brand-track .brand-set[aria-hidden="true"] {
+    display:flex;
+    flex:0 0 auto;
+    align-items:center;
+    gap:28px;
+    padding-right:28px;
+  }
+}
+
+@keyframes mobileBrandTicker {
+  to { transform:translate3d(-50%,0,0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-track,
+  .performance-lite .brand-track { animation:none!important; transform:none!important; }
+  .brand-track .brand-set[aria-hidden="true"] { display:none; }
+}

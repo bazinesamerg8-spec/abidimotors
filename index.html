@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="tour.css?v=20260912-2">
   <link rel="stylesheet" href="rooms.css?v=20260910-4">
   <link rel="stylesheet" href="detail.css?v=20260909-2">
-  <link rel="stylesheet" href="mobile.css?v=20260912-4">
+  <link rel="stylesheet" href="mobile.css?v=20260912-6">
 </head>
 <body>
   <div class="ambient-noise" aria-hidden="true"></div>
@@ -68,6 +68,10 @@
       <p class="tour-status" id="tourStatus" role="status" aria-live="polite"></p>
     </section>
     </div>
+
+
+
+    
 
     <section class="trust-strip" aria-label="Why choose Abidi Motors">
       <article><b>31 vehicles</b><span>A focused selection</span></article>
@@ -165,8 +169,8 @@
     (()=>{
       const lite=document.documentElement.classList.contains('performance-lite');
       const scripts=lite
-        ? ['showroom.js?v=20260912-1','tour.js?v=20260912-4']
-        : ['assets/vendor/gsap/gsap.min.js','assets/vendor/gsap/ScrollTrigger.min.js','showroom.js?v=20260912-1','tour.js?v=20260912-4'];
+        ? ['showroom.js?v=20260912-1','tour.js?v=20260912-5']
+        : ['assets/vendor/gsap/gsap.min.js','assets/vendor/gsap/ScrollTrigger.min.js','showroom.js?v=20260912-1','tour.js?v=20260912-5'];
       const load=index=>{
         if(index===scripts.length)return;
         const script=document.createElement('script');

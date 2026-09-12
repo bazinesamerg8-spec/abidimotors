@@ -189,7 +189,14 @@
   // Keep customer-facing counts and brand labels tied to the actual published inventory.
   const brands = [...new Set(state.vehicles.map(car => car.brand))];
   const rail = document.querySelector('.brand-track');
-  rail.replaceChildren(...brands.map(brand => {const span=document.createElement('span');span.textContent=brand.toUpperCase();return span}));
+  const createBrandSet = duplicate => {
+    const group=document.createElement('div');
+    group.className='brand-set';
+    if(duplicate)group.setAttribute('aria-hidden','true');
+    group.append(...brands.map(brand=>{const span=document.createElement('span');span.textContent=brand.toUpperCase();return span}));
+    return group;
+  };
+  rail.replaceChildren(createBrandSet(false),createBrandSet(true));
   document.querySelector('.trust-strip article b').textContent=state.vehicles.length+' vehicles';
   document.querySelector('.trust-strip article:last-child b').textContent='Explore in 360°';
   const menu=document.querySelector('.main-nav'),toggle=document.querySelector('.nav-toggle');
