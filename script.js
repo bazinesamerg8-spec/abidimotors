@@ -6,7 +6,8 @@ const translations={
 };
 function colors(brand){return {'Audi':'#354b55','Volkswagen':'#34495b','Geely':'#3e4d60','Jetour':'#625027','GAC':'#5d3430','Changan':'#303b67'}[brand]||'#4b432b'}
 function filtered(){let q=$('#searchInput').value.toLowerCase(),brand=$('#brandFilter').value,pf=$('#priceFilter').value,body=$('#bodyFilter').value,transmission=$('#transmissionFilter').value;let a=state.vehicles.filter(v=>(!state.favoritesOnly||state.favorites.has(v.id))&&(v.brand+' '+v.model).toLowerCase().includes(q)&&(brand==='all'||v.brand===brand)&&(body==='all'||v.body===body)&&(transmission==='all'||v.transmission===transmission)&&(pf==='all'||(pf==='under300'&&v.price<300)||(pf==='300to450'&&v.price>=300&&v.price<=450)||(pf==='over450'&&v.price>450)));let sort=$('#sortSelect').value;if(sort==='low')a.sort((x,y)=>(x.price??9999)-(y.price??9999));if(sort==='high')a.sort((x,y)=>(y.price??-1)-(x.price??-1));if(sort==='featured')a.sort((x,y)=>y.featured-x.featured);return a}
-const useDeferredCardImages=document.documentElement.classList.contains('performance-lite');
+// Keep the automatic showroom transition free from off-screen image decoding.
+const useDeferredCardImages=true;
 const cardImageObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(entry=>{
   if(!entry.isIntersecting)return;
   const image=entry.target;

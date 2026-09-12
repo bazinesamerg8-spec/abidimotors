@@ -3,7 +3,6 @@
   const root = document.querySelector('.showroom-tour');
   if (!root) return;
   const query = selector => root.querySelector(selector);
-  const journey = root.closest('.showroom-journey') || root;
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
   const performanceLite = document.documentElement.classList.contains('performance-lite');
   const rooms = [
@@ -22,11 +21,9 @@
   ];
   const gallery = query('#tourGallery');
   const copy = query('.tour-room-copy');
-  const motionButton = query('#tourMotion');
-  const route = [...root.querySelectorAll('[data-room-target]')];
-  let current = 0, paused = false, reduced = preference.matches, roomTransition = null, travelTarget = null, travelTimer = 0;
+  let current = 0, reduced = preference.matches, roomTransition = null, autoTimer = 0;
   let raf = 0, lookX = 0, lookY = 0, lookRX = 0, lookRY = 0, targetX = 0, targetY = 0, targetRX = 0, targetRY = 0, visible = true;
-  const motionAllowed = () => !paused && !reduced && !performanceLite && visible && !document.hidden;
+  const motionAllowed = () => !reduced && !performanceLite && visible && !document.hidden;
   const animate = (element, properties) => {
     if (window.gsap && motionAllowed()) gsap.to(element, properties);
     else {
@@ -34,6 +31,20 @@
       Object.entries(properties).filter(([key]) => key.startsWith('--')).forEach(([key,value]) => element.style.setProperty(key,value));
     }
   };
+  function clearAutoTour() {
+    clearTimeout(autoTimer);
+    autoTimer = 0;
+  }
+  function scheduleAutoTour() {
+    clearAutoTour();
+    if(reduced||!visible||document.hidden)return;
+    autoTimer=setTimeout(()=>{
+      autoTimer=0;
+      if(reduced||!visible||document.hidden)return;
+      setRoom((current+1)%rooms.length,true,true);
+      scheduleAutoTour();
+    },2000);
+  }
   function renderLook() {
     raf = 0;
     if (!motionAllowed()) return;
@@ -56,11 +67,9 @@
     root.style.setProperty('--look-ry','0deg');
   }
   function updateMotion() {
-    root.classList.toggle('is-paused', paused || reduced || performanceLite);
-    root.dataset.motionPaused = String(paused || reduced || performanceLite);
-    motionButton.setAttribute('aria-pressed',String(paused || reduced || performanceLite));
-    motionButton.textContent = performanceLite ? 'Optimized motion' : reduced ? 'Reduced motion on' : paused ? 'Resume motion ▶' : 'Pause motion Ⅱ';
-    motionButton.disabled = reduced || performanceLite;
+    root.classList.toggle('is-paused', reduced);
+    root.classList.toggle('is-optimized', performanceLite && !reduced);
+    root.dataset.motionPaused = String(reduced);
     if (!motionAllowed()) {
       resetLook();
       if (window.gsap) {
@@ -83,21 +92,15 @@
     title.replaceChildren(document.createTextNode(room.title),document.createElement('br'));
     const accent = document.createElement('em'); accent.textContent = room.accent; title.append(accent);
     query('#tourDescription').textContent = room.description;
-    query('#tourAction').textContent = room.action + ' ↗';
+    query('#tourAction').hidden = index !== 2;
+    query('#tourAction').textContent = 'Explore all vehicles ↗';
     query('#tourFact').textContent = room.fact;
     query('#tourFactDetail').textContent = room.note;
     query('#tourLocation').textContent = room.name;
-    query('#tourHotspotLabel').textContent = room.next;
     gallery.hidden = index !== 2;
     if(index===2)gallery.querySelectorAll('img[data-src]').forEach(image=>{
       image.src=image.dataset.src;
       image.removeAttribute('data-src');
-    });
-    query('#tourPrevious').disabled = index === 0;
-    query('#tourNext').disabled = index === rooms.length - 1;
-    route.forEach(button => {
-      if (button.dataset.roomTarget === room.id) button.setAttribute('aria-current','step');
-      else button.removeAttribute('aria-current');
     });
   }
   function setRoom(index, announce = true, driveCamera = true) {
@@ -122,35 +125,13 @@
     } else {
       applyRoom(index);
       if(performanceLite&&!reduced&&announce&&copy.animate){
-        copy.animate(
-          [{opacity:.55,transform:`translateY(${direction*10}px)`},{opacity:1,transform:'translateY(0)'}],
-          {duration:220,easing:'cubic-bezier(.2,.8,.2,1)'}
-        );
+        [copy,...(index===2?[gallery]:[])].forEach((element,position)=>element.animate(
+          [{opacity:.45,transform:`translateY(${direction*12}px)`},{opacity:1,transform:'translateY(0)'}],
+          {duration:360,delay:position*70,easing:'cubic-bezier(.2,.8,.2,1)'}
+        ));
       }
     }
     if (announce) query('#tourStatus').textContent = room.name + '. ' + room.description;
-  }
-  function travelTo(index) {
-    if (index < 0 || index >= rooms.length) return;
-    setRoom(index,true,reduced||performanceLite);
-    if (reduced) return;
-    travelTarget=index;
-    clearTimeout(travelTimer);
-    travelTimer=setTimeout(()=>{travelTarget=null},1600);
-    const start = journey.getBoundingClientRect().top + scrollY;
-    const distance = Math.max(0,journey.offsetHeight-innerHeight);
-    scrollTo({top:start+distance*(index/(rooms.length-1)),behavior:paused?'auto':'smooth'});
-  }
-  function scrubShowroom(progress) {
-    if (reduced || performanceLite) return;
-    const scaled=Math.max(0,Math.min(1,progress))*2,from=Math.min(1,Math.floor(scaled)),to=Math.min(2,from+1),mix=scaled-from;
-    const index=progress<.25?0:progress<.75?1:2;
-    if(travelTarget!==null&&Math.abs(progress-travelTarget/2)<.025){travelTarget=null;clearTimeout(travelTimer)}
-    if(travelTarget===null&&index!==current)setRoom(index,true,false);
-    const x=rooms[from].camera+(rooms[to].camera-rooms[from].camera)*mix;
-    const zoom=rooms[from].zoom+(rooms[to].zoom-rooms[from].zoom)*mix;
-    root.style.setProperty('--room-x',(paused?rooms[index].camera:x).toFixed(3)+'vw');
-    root.style.setProperty('--room-scale',(paused?rooms[index].zoom:zoom).toFixed(4));
   }
   function goToSection(id) {
     const destination = document.getElementById(id);
@@ -178,19 +159,13 @@
     label.append(brand,name,price); stand.append(photo,label);
     stand.addEventListener('click',() => detail(car.id)); gallery.append(stand);
   });
-  route.forEach((button,index) => button.addEventListener('click',() => travelTo(index)));
-  query('.tour-route').addEventListener('keydown',event => {
-    if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
-    event.preventDefault();
-    const next = event.key === 'Home' ? 0 : event.key === 'End' ? 2 : Math.min(2,Math.max(0,current+(event.key==='ArrowRight'?1:-1)));
-    travelTo(next); route[next].focus();
+  query('#tourAction').addEventListener('click',()=>goToSection('inventory'));
+  preference.addEventListener('change',event => {
+    reduced=event.matches;
+    clearAutoTour();
+    updateMotion();
+    if(!reduced)scheduleAutoTour();
   });
-  query('#tourPrevious').addEventListener('click',() => travelTo(current-1));
-  query('#tourNext').addEventListener('click',() => travelTo(current+1));
-  query('#tourHotspot').addEventListener('click',() => travelTo((current+1)%rooms.length));
-  query('#tourAction').addEventListener('click',() => current<2 ? travelTo(current+1) : goToSection('inventory'));
-  motionButton.addEventListener('click',() => {paused=!paused; updateMotion()});
-  preference.addEventListener('change',event => {reduced=event.matches;updateMotion()});
   root.addEventListener('pointermove',event => {
     if (event.pointerType !== 'mouse' || !motionAllowed() || event.buttons || document.querySelector('dialog[open]')) return;
     const box = root.getBoundingClientRect();
@@ -204,9 +179,13 @@
   root.addEventListener('pointerleave',() => {targetX=targetY=targetRX=targetRY=0;if (!raf && motionAllowed()) raf=requestAnimationFrame(renderLook)});
   new IntersectionObserver(([entry]) => {
     visible=entry.isIntersecting;
-    if (!visible) resetLook();
+    if (!visible){resetLook();clearAutoTour()}
+    else scheduleAutoTour();
   },{threshold:0}).observe(root);
-  document.addEventListener('visibilitychange',() => {if(document.hidden) resetLook()});
+  document.addEventListener('visibilitychange',() => {
+    if(document.hidden){resetLook();clearAutoTour()}
+    else scheduleAutoTour();
+  });
   // Keep customer-facing counts and brand labels tied to the actual published inventory.
   const brands = [...new Set(state.vehicles.map(car => car.brand))];
   const rail = document.querySelector('.brand-track');
@@ -218,22 +197,5 @@
   menu.addEventListener('click',event => {
     if(event.target.closest('a')) {menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')}
   });
-  setRoom(0,false); updateMotion();
-  if (window.ScrollTrigger && !performanceLite) ScrollTrigger.create({
-    trigger:journey,start:'top top',end:'bottom bottom',invalidateOnRefresh:true,
-    onUpdate:self=>scrubShowroom(self.progress)
-  });
-  else if(performanceLite&&!reduced){
-    let liteScrollFrame=0;
-    const updateLiteRoom=()=>{
-      const distance=Math.max(1,journey.offsetHeight-innerHeight);
-      const progress=Math.max(0,Math.min(1,-journey.getBoundingClientRect().top/distance));
-      const next=progress<.25?0:progress<.75?1:2;
-      if(travelTarget!==null){
-        if(Math.abs(progress-travelTarget/2)<.035){travelTarget=null;clearTimeout(travelTimer)}
-      }else if(next!==current)setRoom(next,true,true);
-      liteScrollFrame=0;
-    };
-    addEventListener('scroll',()=>{if(!liteScrollFrame)liteScrollFrame=requestAnimationFrame(updateLiteRoom)},{passive:true});
-  }
+  setRoom(0,false); updateMotion(); scheduleAutoTour();
 })();

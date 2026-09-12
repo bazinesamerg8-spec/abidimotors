@@ -49,9 +49,10 @@ input, select, textarea { min-width: 0; }
     gap: 10px;
     border-radius: 0 !important;
   }
-  .site-header .brand { min-width: 0; gap: 9px; }
+  .site-header .brand { min-width: 0; padding-block: 8px; }
+  .site-header .brand-logo { width: auto; height: 47px; max-width: 170px; }
   .site-header .brand strong { white-space: nowrap; font-size: 14px; }
-  .site-header .brand-mark { flex: 0 0 40px; width: 40px; height: 40px; }
+  footer .brand-logo { width: min(220px, 72vw); max-width: none; height: auto; }
   .nav-toggle,
   .language-button,
   .icon-button { min-width: 44px; min-height: 44px; }
@@ -300,6 +301,7 @@ html.performance-lite { scroll-behavior:auto; }
 .performance-lite .showroom-tour.hero { position:sticky; top:0; }
 .performance-lite .tour-architecture {
   transform:translate3d(var(--room-x),0,0) scale(var(--room-scale));
+  transition:transform .75s cubic-bezier(.2,.8,.2,1);
   will-change:auto;
 }
 .performance-lite .tour-scene::before,
@@ -358,3 +360,7 @@ html.performance-lite { scroll-behavior:auto; }
   .performance-lite .showroom-journey { height:auto; }
   .performance-lite .showroom-tour.hero { position:relative; top:auto; }
 }
+
+/* Automatic tour: one viewport, no scroll-controlled room navigation. */
+.showroom-journey { height:auto!important; min-height:100svh; }
+.showroom-tour.hero { position:relative!important; top:auto; }

@@ -20,18 +20,17 @@
   <link rel="stylesheet" href="showroom.css">
   <link rel="stylesheet" href="atelier.css">
   <link rel="stylesheet" href="dealership.css">
-  <link rel="stylesheet" href="tour.css">
+  <link rel="stylesheet" href="tour.css?v=20260912-2">
   <link rel="stylesheet" href="rooms.css?v=20260910-4">
   <link rel="stylesheet" href="detail.css?v=20260909-2">
-  <link rel="stylesheet" href="mobile.css?v=20260912-1">
+  <link rel="stylesheet" href="mobile.css?v=20260912-4">
 </head>
 <body>
   <div class="ambient-noise" aria-hidden="true"></div>
   <div class="cursor-aura" aria-hidden="true"></div>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="Abidi Motors home">
-      <span class="brand-mark">AM</span>
-      <span><strong>ABIDI MOTORS</strong><small data-i18n="brandLine">PREMIUM AUTO SHOWROOM</small></span>
+      <img class="brand-logo" src="assets/brand/abidi-motors-logo-transparent-v1-optimized.png" alt="" width="720" height="288">
     </a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav class="main-nav" aria-label="Main navigation">
@@ -54,24 +53,17 @@
         <div class="tour-architecture"></div><div class="tour-shade"></div><div class="tour-light"></div><div class="tour-floor-line"></div>
         <span class="tour-wall-sign">ABIDI<span>MOTORS / PRIVATE SHOWROOM</span></span>
       </div>
-      <div class="tour-topline"><span><i></i> THE DIGITAL SHOWROOM</span><button type="button" id="tourMotion" aria-pressed="false">Pause motion <span aria-hidden="true">Ⅱ</span></button></div>
+      <div class="tour-topline"><span><i></i> THE DIGITAL SHOWROOM</span></div>
       <div class="tour-room-copy">
         <p class="tour-kicker" id="tourKicker">01 / THE ARRIVAL</p>
         <h1 id="tourTitle">Your next chapter.<br><em>Parked here.</em></h1>
         <p id="tourDescription">Step into Abidi Motors. Look around, get closer to your next car, and make yourself at home.</p>
-        <div class="tour-actions"><button type="button" class="tour-primary" id="tourAction">Enter the showroom <span aria-hidden="true">↗</span></button><a href="#inventory" class="tour-text-link">Browse the collection <span aria-hidden="true">→</span></a></div>
+        <div class="tour-actions"><button type="button" class="tour-primary" id="tourAction" hidden>Explore all vehicles <span aria-hidden="true">↗</span></button></div>
         <div class="tour-room-facts"><span id="tourFact">YOUR PRIVATE VISIT</span><span id="tourFactDetail">Explore at your own pace</span></div>
       </div>
       <div class="tour-gallery" id="tourGallery" hidden aria-label="Vehicles in the gallery"></div>
-      <button type="button" class="tour-hotspot" id="tourHotspot"><span aria-hidden="true">+</span><span id="tourHotspotLabel">Begin the walkthrough</span></button>
       <div class="tour-bottom">
         <div class="tour-location"><span class="tour-small">YOU ARE HERE</span><strong id="tourLocation">The arrival</strong></div>
-        <nav class="tour-route" aria-label="Showroom rooms">
-          <button type="button" data-room-target="arrival" aria-current="step"><span>01</span> Arrival</button><i aria-hidden="true"></i>
-          <button type="button" data-room-target="passage"><span>02</span> Walk</button><i aria-hidden="true"></i>
-          <button type="button" data-room-target="collection"><span>03</span> Collection</button>
-        </nav>
-        <div class="tour-navigation"><button type="button" id="tourPrevious" aria-label="Previous room" disabled>←</button><button type="button" id="tourNext" aria-label="Next room">→</button></div>
       </div>
       <p class="tour-status" id="tourStatus" role="status" aria-live="polite"></p>
     </section>
@@ -158,7 +150,7 @@
   </main>
 
   <footer>
-    <a class="brand" href="#home"><span class="brand-mark">AM</span><span><strong>ABIDI MOTORS</strong><small>PREMIUM AUTO SHOWROOM</small></span></a>
+    <a class="brand footer-brand" href="#home" aria-label="Abidi Motors home"><img class="brand-logo" src="assets/brand/abidi-motors-logo-transparent-v1-optimized.png" alt="" width="720" height="288" loading="lazy" decoding="async"></a>
     <p>© 2026 Abidi Motors. <span data-i18n="rights">All rights reserved.</span></p>
     <div><a href="#inventory" data-i18n="navCars">Cars</a><a href="#services" data-i18n="navServices">Services</a></div>
   </footer>
@@ -168,13 +160,13 @@
   <div class="site-toast" id="siteToast" role="status" aria-live="polite"></div>
   <aside class="compare-bar" id="compareBar"><span><b id="compareCount">0</b> selected to compare</span><div id="compareNames"></div><button class="button button-small" id="compareNow">Compare</button><button class="icon-button" id="clearCompare" aria-label="Clear comparison">×</button></aside>
   <script src="data.js"></script>
-  <script src="script.js?v=20260912-1"></script>
+  <script src="script.js?v=20260912-2"></script>
   <script>
     (()=>{
       const lite=document.documentElement.classList.contains('performance-lite');
       const scripts=lite
-        ? ['showroom.js?v=20260912-1','tour.js?v=20260912-1']
-        : ['assets/vendor/gsap/gsap.min.js','assets/vendor/gsap/ScrollTrigger.min.js','showroom.js?v=20260912-1','tour.js?v=20260912-1'];
+        ? ['showroom.js?v=20260912-1','tour.js?v=20260912-4']
+        : ['assets/vendor/gsap/gsap.min.js','assets/vendor/gsap/ScrollTrigger.min.js','showroom.js?v=20260912-1','tour.js?v=20260912-4'];
       const load=index=>{
         if(index===scripts.length)return;
         const script=document.createElement('script');
