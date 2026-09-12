@@ -290,3 +290,71 @@ input, select, textarea { min-width: 0; }
   .showroom-journey { height: auto; }
   .showroom-tour.hero { position: relative; }
 }
+
+/* Automatic low-power profile: preserve the showroom design while keeping
+   animation on compositor-friendly opacity and transform properties only. */
+html.performance-lite { scroll-behavior:auto; }
+.performance-lite .ambient-noise,
+.performance-lite .cursor-aura { display:none!important; }
+.performance-lite .showroom-journey { height:260svh; }
+.performance-lite .showroom-tour.hero { position:sticky; top:0; }
+.performance-lite .tour-architecture {
+  transform:translate3d(var(--room-x),0,0) scale(var(--room-scale));
+  will-change:auto;
+}
+.performance-lite .tour-scene::before,
+.performance-lite .tour-scene::after,
+.performance-lite .tour-light { transform:none; mix-blend-mode:normal; }
+.performance-lite .inventory-atmosphere,
+.performance-lite .experience-backdrop,
+.performance-lite .experience-light,
+.performance-lite .about-environment,
+.performance-lite .contact-atmosphere { transform:none!important; filter:none!important; will-change:auto!important; }
+.performance-lite .inventory-atmosphere::before { background-image:none!important; }
+.performance-lite .experience-backdrop { background-image:radial-gradient(circle at 78% 18%,#d9ad6750,transparent 32%),linear-gradient(135deg,#10251f,#08130f)!important; }
+.performance-lite .about-art { background-image:radial-gradient(circle at 62% 32%,#d0a26250,transparent 35%),linear-gradient(145deg,#18382d,#091712)!important; }
+.performance-lite .inventory-toolbar,
+.performance-lite .badge,
+.performance-lite .favorite,
+.performance-lite .tour-concierge,
+.performance-lite .site-header,
+.performance-lite .inventory-section .section-heading,
+.performance-lite .experience .service-grid article,
+.performance-lite .about-copy,
+.performance-lite .contact-direct a,
+.performance-lite .contact-section form,
+.performance-lite .hero-car-label,
+.performance-lite .vehicle-modal::backdrop,
+.performance-lite .compare-modal::backdrop,
+.performance-lite .vehicle-modal .modal-close { backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
+.performance-lite .vehicle-card { transform:none!important; transform-style:flat; will-change:auto; box-shadow:0 14px 34px #0003; }
+.performance-lite .vehicle-card:hover .vehicle-image { transform:none; filter:none; }
+.performance-lite .button::after { display:none; }
+.performance-lite .experience,
+.performance-lite .about-section,
+.performance-lite .contact-section,
+.performance-lite footer { content-visibility:auto; contain-intrinsic-size:auto 900px; }
+.performance-lite .stage-orbit,
+.performance-lite .brand-track { animation:none!important; }
+.performance-lite .section-heading,
+.performance-lite .experience-panel,
+.performance-lite .about-art,
+.performance-lite .about-copy,
+.performance-lite .contact-copy,
+.performance-lite #contactForm,
+.performance-lite .vehicle-card { opacity:1!important; visibility:visible!important; translate:none!important; filter:none!important; }
+
+@media (max-width: 700px) {
+  .performance-lite .inventory-atmosphere,
+  .performance-lite .contact-atmosphere { background-image:none!important; }
+}
+
+@media (max-width: 900px) {
+  .performance-lite .tour-architecture,
+  .performance-lite .about-environment { background-image:url('assets/showroom/abidi-showroom-panorama-v2-mobile.jpg')!important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .performance-lite .showroom-journey { height:auto; }
+  .performance-lite .showroom-tour.hero { position:relative; top:auto; }
+}

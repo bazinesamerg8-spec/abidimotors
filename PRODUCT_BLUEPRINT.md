@@ -251,4 +251,3 @@ Names needing verification include `Golf 8.6 Fimi`, `T-Roc Grenardo`, the brand 
 3. Photos/video/3D assets, or a decision on how those assets will be produced and licensed.
 4. Showroom address, map pin, hours, phone/WhatsApp, social profiles, services, warranty/import terms, and legal business information.
 5. Confirmation of Arabic/French/English launch languages and whether the site accepts deposits or only leads.
-

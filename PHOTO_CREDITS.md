@@ -19,4 +19,4 @@ Review each source's current reuse terms before production publication. Source U
 
 ## Showroom environment
 
-- `assets/showroom/abidi-showroom-panorama-v2.png`: original AI-generated background created for the Abidi Motors interactive showroom using OpenAI's built-in image-generation tool, September 2026. It contains no third-party logo, vehicle or readable signage.
+- `assets/showroom/abidi-showroom-panorama-v2.jpg` and its mobile derivative `abidi-showroom-panorama-v2-mobile.jpg`: optimized copies of the original AI-generated background created for the Abidi Motors interactive showroom using OpenAI's built-in image-generation tool, September 2026. They contain no third-party logo, vehicle or readable signage.

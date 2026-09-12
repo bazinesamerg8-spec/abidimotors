@@ -46,6 +46,6 @@ The checks cover camera transitions, fixed vehicle size, pause, details, filteri
 
 ## Generated showroom asset
 
-`assets/showroom/abidi-showroom-panorama-v2.png` was generated with the built-in image-generation tool for this project.
+`assets/showroom/abidi-showroom-panorama-v2.jpg` is the optimized local copy generated for this project.
 
 Final prompt: "Create a completely new, ultra-premium photorealistic automobile showroom interior for a full-width interactive website background, with three connected spaces: a dramatic arrival hall, refined vehicle gallery, and private consultation lounge. Use an expansive eye-level panoramic composition with strong horizontal depth, open central floor for an overlaid car, and a darker left area for website copy. Use blue-hour exterior light, warm interior pools of light, dark emerald panels, charcoal stone, smoked glass, dark wood, and restrained champagne brass. No vehicles, people, logos, brand names, readable text, watermark, signage, UI, or distorted architecture."

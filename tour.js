@@ -5,6 +5,7 @@
   const query = selector => root.querySelector(selector);
   const journey = root.closest('.showroom-journey') || root;
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
+  const performanceLite = document.documentElement.classList.contains('performance-lite');
   const rooms = [
     {id:'arrival',name:'The arrival',kicker:'01 / THE ARRIVAL',
       title:'Your next chapter.',accent:'Parked here.',
@@ -25,7 +26,7 @@
   const route = [...root.querySelectorAll('[data-room-target]')];
   let current = 0, paused = false, reduced = preference.matches, roomTransition = null, travelTarget = null, travelTimer = 0;
   let raf = 0, lookX = 0, lookY = 0, lookRX = 0, lookRY = 0, targetX = 0, targetY = 0, targetRX = 0, targetRY = 0, visible = true;
-  const motionAllowed = () => !paused && !reduced && visible && !document.hidden;
+  const motionAllowed = () => !paused && !reduced && !performanceLite && visible && !document.hidden;
   const animate = (element, properties) => {
     if (window.gsap && motionAllowed()) gsap.to(element, properties);
     else {
@@ -55,11 +56,11 @@
     root.style.setProperty('--look-ry','0deg');
   }
   function updateMotion() {
-    root.classList.toggle('is-paused', paused || reduced);
-    root.dataset.motionPaused = String(paused || reduced);
-    motionButton.setAttribute('aria-pressed',String(paused || reduced));
-    motionButton.textContent = reduced ? 'Reduced motion on' : paused ? 'Resume motion ▶' : 'Pause motion Ⅱ';
-    motionButton.disabled = reduced;
+    root.classList.toggle('is-paused', paused || reduced || performanceLite);
+    root.dataset.motionPaused = String(paused || reduced || performanceLite);
+    motionButton.setAttribute('aria-pressed',String(paused || reduced || performanceLite));
+    motionButton.textContent = performanceLite ? 'Optimized motion' : reduced ? 'Reduced motion on' : paused ? 'Resume motion ▶' : 'Pause motion Ⅱ';
+    motionButton.disabled = reduced || performanceLite;
     if (!motionAllowed()) {
       resetLook();
       if (window.gsap) {
@@ -72,7 +73,7 @@
       root.style.setProperty('--room-x', rooms[current].camera+'vw');
       root.style.setProperty('--room-scale', rooms[current].zoom);
     }
-    window.ScrollTrigger?.refresh();
+    if(!performanceLite)window.ScrollTrigger?.refresh();
   }
   function applyRoom(index) {
     const room = rooms[index];
@@ -88,6 +89,10 @@
     query('#tourLocation').textContent = room.name;
     query('#tourHotspotLabel').textContent = room.next;
     gallery.hidden = index !== 2;
+    if(index===2)gallery.querySelectorAll('img[data-src]').forEach(image=>{
+      image.src=image.dataset.src;
+      image.removeAttribute('data-src');
+    });
     query('#tourPrevious').disabled = index === 0;
     query('#tourNext').disabled = index === rooms.length - 1;
     route.forEach(button => {
@@ -107,19 +112,27 @@
       const incoming=[copy,...(index===2?[gallery]:[])];
       gsap.killTweensOf([copy,gallery]);
       roomTransition=gsap.timeline({onComplete:()=>{roomTransition=null}})
-        .to(outgoing,{autoAlpha:0,y:-24*direction,filter:'blur(8px)',duration:.3,stagger:.025,ease:'power2.in'})
+        .to(outgoing,{autoAlpha:0,y:-20*direction,duration:.26,stagger:.02,ease:'power2.in'})
         .add(()=>{
           applyRoom(index);
-          gsap.set(incoming,{autoAlpha:0,y:34*direction,filter:'blur(10px)'});
+          gsap.set(incoming,{autoAlpha:0,y:28*direction});
         })
-        .to(incoming,{autoAlpha:1,y:0,filter:'blur(0px)',duration:.62,stagger:.08,ease:'power3.out'})
-        .set(incoming,{clearProps:'opacity,visibility,transform,filter'});
-    } else applyRoom(index);
+        .to(incoming,{autoAlpha:1,y:0,duration:.52,stagger:.06,ease:'power3.out'})
+        .set(incoming,{clearProps:'opacity,visibility,transform'});
+    } else {
+      applyRoom(index);
+      if(performanceLite&&!reduced&&announce&&copy.animate){
+        copy.animate(
+          [{opacity:.55,transform:`translateY(${direction*10}px)`},{opacity:1,transform:'translateY(0)'}],
+          {duration:220,easing:'cubic-bezier(.2,.8,.2,1)'}
+        );
+      }
+    }
     if (announce) query('#tourStatus').textContent = room.name + '. ' + room.description;
   }
   function travelTo(index) {
     if (index < 0 || index >= rooms.length) return;
-    setRoom(index,true,reduced);
+    setRoom(index,true,reduced||performanceLite);
     if (reduced) return;
     travelTarget=index;
     clearTimeout(travelTimer);
@@ -129,7 +142,7 @@
     scrollTo({top:start+distance*(index/(rooms.length-1)),behavior:paused?'auto':'smooth'});
   }
   function scrubShowroom(progress) {
-    if (reduced) return;
+    if (reduced || performanceLite) return;
     const scaled=Math.max(0,Math.min(1,progress))*2,from=Math.min(1,Math.floor(scaled)),to=Math.min(2,from+1),mix=scaled-from;
     const index=progress<.25?0:progress<.75?1:2;
     if(travelTarget!==null&&Math.abs(progress-travelTarget/2)<.025){travelTarget=null;clearTimeout(travelTimer)}
@@ -141,7 +154,7 @@
   }
   function goToSection(id) {
     const destination = document.getElementById(id);
-    destination.scrollIntoView({behavior:reduced ? 'instant' : 'smooth'});
+    destination.scrollIntoView({behavior:reduced || performanceLite ? 'instant' : 'smooth'});
     const heading = destination.querySelector('h2');
     heading?.setAttribute('tabindex','-1');
     heading?.focus({preventScroll:true});
@@ -157,7 +170,7 @@
     stand.type = 'button'; stand.className = 'tour-display';
     stand.setAttribute('aria-label','View details of ' + car.brand + ' ' + car.model);
     const photo = document.createElement('img');
-    photo.src = car.photo; photo.alt = car.brand + ' ' + car.model; photo.decoding = 'async';
+    photo.dataset.src = car.photo; photo.alt = car.brand + ' ' + car.model; photo.loading = 'lazy'; photo.fetchPriority = 'low'; photo.decoding = 'async';
     const label = document.createElement('span'); label.className = 'tour-display-copy';
     const brand = document.createElement('small'); brand.textContent = car.brand + ' / ' + car.year;
     const name = document.createElement('strong'); name.textContent = car.model;
@@ -206,8 +219,21 @@
     if(event.target.closest('a')) {menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')}
   });
   setRoom(0,false); updateMotion();
-  if (window.ScrollTrigger) ScrollTrigger.create({
+  if (window.ScrollTrigger && !performanceLite) ScrollTrigger.create({
     trigger:journey,start:'top top',end:'bottom bottom',invalidateOnRefresh:true,
     onUpdate:self=>scrubShowroom(self.progress)
   });
+  else if(performanceLite&&!reduced){
+    let liteScrollFrame=0;
+    const updateLiteRoom=()=>{
+      const distance=Math.max(1,journey.offsetHeight-innerHeight);
+      const progress=Math.max(0,Math.min(1,-journey.getBoundingClientRect().top/distance));
+      const next=progress<.25?0:progress<.75?1:2;
+      if(travelTarget!==null){
+        if(Math.abs(progress-travelTarget/2)<.035){travelTarget=null;clearTimeout(travelTimer)}
+      }else if(next!==current)setRoom(next,true,true);
+      liteScrollFrame=0;
+    };
+    addEventListener('scroll',()=>{if(!liteScrollFrame)liteScrollFrame=requestAnimationFrame(updateLiteRoom)},{passive:true});
+  }
 })();

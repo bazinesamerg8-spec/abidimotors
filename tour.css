@@ -11,7 +11,7 @@
 .tour-scene { position:absolute; inset:0; overflow:hidden; pointer-events:none; perspective:1400px; }
 .tour-architecture {
   position:absolute; inset:-10vh -25vw;
-  background:url('assets/showroom/abidi-showroom-panorama-v2.png') center/auto 100% no-repeat;
+  background:url('assets/showroom/abidi-showroom-panorama-v2.jpg') center/auto 100% no-repeat;
   transform:translate3d(calc(var(--room-x) + var(--look-x)),var(--look-y),0) scale(var(--room-scale)) rotateX(var(--look-rx)) rotateY(var(--look-ry));
   transform-origin:center 58%;
   will-change:transform;
