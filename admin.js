@@ -5,6 +5,8 @@ const LEAD_KEY='abidi-enquiries';
 let vehicles=getVehicles();
 let leads=readList(LEAD_KEY);
 let activeView='dashboard';
+let pendingPhotos=[];
+let creatingVehicle=false;
 
 function readList(key){
   try{const value=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(value)?value:[]}
@@ -17,6 +19,7 @@ function formatDate(value,short=false){const date=new Date(value);if(Number.isNa
 function normalizeWhatsApp(phone=''){let digits=String(phone).replace(/\D/g,'');if(digits.startsWith('0'))digits='213'+digits.slice(1);if(!digits.startsWith('213')&&digits.length===9)digits='213'+digits;return digits}
 function toast(message){const element=$('#adminToast');element.textContent=message;element.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>element.classList.remove('show'),2600)}
 function download(filename,data){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),anchor=document.createElement('a');anchor.href=url;anchor.download=filename;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),500)}
+function persistVehicles(){try{localStorage.setItem(VEHICLE_KEY,JSON.stringify(vehicles));return true}catch(error){console.error(error);toast('Storage is full. Remove some photos and try again.');return false}}
 
 function setDate(){
   const now=new Date(),hour=now.getHours();
@@ -126,3 +129,61 @@ $('#resetInventory').addEventListener('click',()=>{if(!confirm('Restore all cata
 window.addEventListener('storage',event=>{if(event.key===VEHICLE_KEY){vehicles=getVehicles();renderMetrics();if(activeView==='inventory')renderInventory()}if(event.key===LEAD_KEY){leads=readList(LEAD_KEY);renderMetrics();if(activeView==='enquiries')renderLeads();if(activeView==='dashboard')renderDashboard()}});
 
 setDate();renderDashboard();renderInventory();renderLeads();showView('dashboard');
+
+// Full inventory CRUD and media management.
+const legacySaveVehicle=saveVehicle;
+$('#editForm').removeEventListener('submit',legacySaveVehicle);
+
+function updateEditorPreview(){
+  const photo=pendingPhotos[0]||'',preview=$('#editPhoto');
+  preview.src=photo;preview.hidden=!photo;$('#previewEmpty').hidden=Boolean(photo);
+}
+function renderPhotoList(){
+  const photos=pendingPhotos.map((photo,index)=>`<article class="photo-item ${index===0?'cover':''}"><img src="${escapeHtml(photo)}" alt="Vehicle photo ${index+1}"><span>${index===0?'COVER':`PHOTO ${index+1}`}</span><div>${index?`<button type="button" data-photo-cover="${index}">Make cover</button>`:''}<button type="button" data-photo-remove="${index}">Remove</button></div></article>`).join('');
+  const emptySlots=Array.from({length:Math.max(0,5-pendingPhotos.length)},(_,index)=>`<button type="button" class="photo-slot" data-add-photo-slot><span>+</span><b>PHOTO ${pendingPhotos.length+index+1}</b><small>Empty slot</small></button>`).join('');
+  $('#photoList').innerHTML=photos+emptySlots;
+  $('#mediaStatus').textContent=`${pendingPhotos.length} / 5 photos added`;
+  updateEditorPreview();
+}
+openEditor=function(vehicle=null){
+  creatingVehicle=!vehicle;
+  const current=vehicle||{id:'',brand:'',model:'',year:2026,price:null,mileage:0,body:'SUV',transmission:'Automatic',status:'In stock',engine:'',color:'',description:'',published:true,featured:false,photos:[],photo:''};
+  const fields=$('#editForm').elements;
+  ['id','brand','model','year','price','mileage','body','transmission','status','engine','color','description'].forEach(name=>{fields.namedItem(name).value=current[name]??''});
+  fields.namedItem('published').checked=current.published!==false;fields.namedItem('featured').checked=Boolean(current.featured);
+  pendingPhotos=Array.isArray(current.photos)&&current.photos.length?[...current.photos]:(current.photo?[current.photo]:[]);
+  $('#editTitle').textContent=creatingVehicle?'Add a new vehicle':`${current.brand} ${current.model}`;$('#editPhoto').alt=`${current.brand} ${current.model}`;$('#editPreviewStatus').textContent=current.status;$('#saveStatus').textContent='';$('#deleteVehicle').hidden=creatingVehicle;$('#photoUpload').value='';renderPhotoList();
+  $('#editDialog').showModal();
+};
+saveVehicle=function(event){
+  event.preventDefault();
+  const fields=event.currentTarget.elements,id=creatingVehicle?Math.max(0,...vehicles.map(vehicle=>Number(vehicle.id)||0))+1:Number(fields.namedItem('id').value),current=vehicles.find(vehicle=>vehicle.id===id)||{},priceValue=fields.namedItem('price').value;
+  const updated={...current,id,brand:fields.namedItem('brand').value.trim(),model:fields.namedItem('model').value.trim(),year:Number(fields.namedItem('year').value),price:priceValue===''?null:Number(priceValue),mileage:Number(fields.namedItem('mileage').value||0),body:fields.namedItem('body').value.trim()||'Other',transmission:fields.namedItem('transmission').value,status:fields.namedItem('status').value,engine:fields.namedItem('engine').value.trim(),color:fields.namedItem('color').value.trim(),description:fields.namedItem('description').value.trim(),photos:[...pendingPhotos],photo:pendingPhotos[0]||'',published:fields.namedItem('published').checked,featured:fields.namedItem('featured').checked};
+  const previous=vehicles;vehicles=creatingVehicle?[updated,...vehicles]:vehicles.map(vehicle=>vehicle.id===id?updated:vehicle);
+  if(!persistVehicles()){vehicles=previous;return}
+  renderInventory();renderDashboard();$('#saveStatus').textContent='Vehicle saved to the public catalogue.';toast(`${updated.brand} ${updated.model} ${creatingVehicle?'added':'updated'}`);setTimeout(()=>$('#editDialog').close(),450);
+};
+$('#editForm').addEventListener('submit',saveVehicle);
+
+function deleteVehicle(){
+  const id=Number($('#editForm').elements.namedItem('id').value),vehicle=vehicles.find(item=>item.id===id);if(!vehicle)return;
+  if(!confirm(`Delete ${vehicle.brand} ${vehicle.model}? This removes it from the public catalogue.`))return;
+  const previous=vehicles;vehicles=vehicles.filter(item=>item.id!==id);if(!persistVehicles()){vehicles=previous;return}$('#editDialog').close();renderInventory();renderDashboard();toast(`${vehicle.brand} ${vehicle.model} deleted`);
+}
+function compressPhoto(file){
+  return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=()=>reject(new Error('Could not read image'));reader.onload=()=>{const image=new Image();image.onerror=()=>reject(new Error('Invalid image'));image.onload=()=>{const max=1280,scale=Math.min(1,max/Math.max(image.naturalWidth,image.naturalHeight)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));canvas.getContext('2d').drawImage(image,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/webp',.76))};image.src=reader.result};reader.readAsDataURL(file)});
+}
+async function addPhotos(files){
+  const accepted=[...files].filter(file=>/^image\/(jpeg|png|webp)$/.test(file.type)).slice(0,5-pendingPhotos.length);if(!accepted.length){$('#mediaStatus').textContent=pendingPhotos.length>=5?'This vehicle already has all 5 photos.':'Choose JPG, PNG or WebP images.';return}
+  $('#mediaStatus').textContent='Optimising photos...';
+  try{for(const file of accepted)pendingPhotos.push(await compressPhoto(file));renderPhotoList()}catch{$('#mediaStatus').textContent='One selected image could not be processed.'}
+}
+$('#addVehicle').addEventListener('click',()=>openEditor());
+$('#deleteVehicle').addEventListener('click',deleteVehicle);
+$('#photoUpload').addEventListener('change',event=>addPhotos(event.target.files));
+$('#photoList').addEventListener('click',event=>{
+  const remove=event.target.closest('[data-photo-remove]'),cover=event.target.closest('[data-photo-cover]');
+  if(event.target.closest('[data-add-photo-slot]')){$('#photoUpload').click();return}
+  if(remove){pendingPhotos.splice(Number(remove.dataset.photoRemove),1);renderPhotoList()}
+  if(cover){const [photo]=pendingPhotos.splice(Number(cover.dataset.photoCover),1);pendingPhotos.unshift(photo);renderPhotoList()}
+});

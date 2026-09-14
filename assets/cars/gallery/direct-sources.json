@@ -1,0 +1,296 @@
+﻿[
+    {
+        "model":  "geely-coolray",
+        "file":  "view-4.jpg",
+        "title":  "Geely Binyue facelift front 2.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Geely_Binyue_facelift_front_2.jpg"
+    },
+    {
+        "model":  "jetour-t1",
+        "file":  "view-1.jpg",
+        "title":  "Jetour Shanhai T1 004.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Shanhai_T1_004.jpg"
+    },
+    {
+        "model":  "jetour-t1",
+        "file":  "view-2.jpg",
+        "title":  "Jetour Shanhai T1 007.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Shanhai_T1_007.jpg"
+    },
+    {
+        "model":  "jetour-t1",
+        "file":  "view-3.jpg",
+        "title":  "Jetour Shanhai T1 008.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Shanhai_T1_008.jpg"
+    },
+    {
+        "model":  "jetour-t1",
+        "file":  "view-4.jpg",
+        "title":  "Jetour Shanhai T1 009.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Shanhai_T1_009.jpg"
+    },
+    {
+        "model":  "jetour-x70",
+        "file":  "view-1.jpg",
+        "title":  "Jetour X70 001.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_X70_001.jpg"
+    },
+    {
+        "model":  "jetour-x70",
+        "file":  "view-2.jpg",
+        "title":  "Jetour X70 006.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_X70_006.jpg"
+    },
+    {
+        "model":  "jetour-x70",
+        "file":  "view-3.jpg",
+        "title":  "Jetour X70 007.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_X70_007.jpg"
+    },
+    {
+        "model":  "jetour-x70",
+        "file":  "view-4.jpg",
+        "title":  "Jetour X70 China 2019-03-14.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_X70_China_2019-03-14.jpg"
+    },
+    {
+        "model":  "kia-kx1",
+        "file":  "view-1.jpg",
+        "title":  "Kia Stonic 1.0 T-GDI.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Kia_Stonic_1.0_T-GDI.jpg"
+    },
+    {
+        "model":  "kia-kx1",
+        "file":  "view-2.jpg",
+        "title":  "Kia Stonic IMG 0899.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Kia_Stonic_IMG_0899.jpg"
+    },
+    {
+        "model":  "kia-kx1",
+        "file":  "view-3.jpg",
+        "title":  "Kia Stonic IMG 4133.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Kia_Stonic_IMG_4133.jpg"
+    },
+    {
+        "model":  "kia-kx1",
+        "file":  "view-4.jpg",
+        "title":  "00 kia stonic 1.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:00_kia_stonic_1.jpg"
+    },
+    {
+        "model":  "kia-k3",
+        "file":  "view-1.jpg",
+        "title":  "0 Kia K3 (BD) 1.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:0_Kia_K3_(BD)_1.jpg"
+    },
+    {
+        "model":  "kia-k3",
+        "file":  "view-2.jpg",
+        "title":  "0 Kia K3 (BD) 2.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:0_Kia_K3_(BD)_2.jpg"
+    },
+    {
+        "model":  "kia-k3",
+        "file":  "view-3.jpg",
+        "title":  "KIA K3 BD Front-Side.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:KIA_K3_BD_Front-Side.jpg"
+    },
+    {
+        "model":  "kia-k3",
+        "file":  "view-4.jpg",
+        "title":  "KIA K3 BD Rear-Side.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:KIA_K3_BD_Rear-Side.jpg"
+    },
+    {
+        "model":  "gac-gs4-max",
+        "file":  "view-1.jpg",
+        "title":  "Trumpchi GS4 Max 001.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Trumpchi_GS4_Max_001.jpg"
+    },
+    {
+        "model":  "gac-gs4-max",
+        "file":  "view-2.jpg",
+        "title":  "Trumpchi GS4 Max 002.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Trumpchi_GS4_Max_002.jpg"
+    },
+    {
+        "model":  "gac-gs4-max",
+        "file":  "view-3.jpg",
+        "title":  "Trumpchi GS4 Max 003.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Trumpchi_GS4_Max_003.jpg"
+    },
+    {
+        "model":  "gac-gs4-max",
+        "file":  "view-4.jpg",
+        "title":  "GAC Trumpchi GS4 Max China 2025-04-11.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:GAC_Trumpchi_GS4_Max_China_2025-04-11.jpg"
+    },
+    {
+        "model":  "jetour-dashing",
+        "file":  "view-1.jpg",
+        "title":  "Jetour Dasheng 001.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Dasheng_001.jpg"
+    },
+    {
+        "model":  "jetour-dashing",
+        "file":  "view-2.jpg",
+        "title":  "Jetour Dasheng 002.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Dasheng_002.jpg"
+    },
+    {
+        "model":  "jetour-dashing",
+        "file":  "view-3.jpg",
+        "title":  "Jetour Dasheng 003.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Dasheng_003.jpg"
+    },
+    {
+        "model":  "jetour-dashing",
+        "file":  "view-4.jpg",
+        "title":  "Jetour Dasheng 004.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Dasheng_004.jpg"
+    },
+    {
+        "model":  "kaiyi-x7",
+        "file":  "view-1.jpg",
+        "title":  "Kaiyi Kunlun 001.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Kaiyi_Kunlun_001.jpg"
+    },
+    {
+        "model":  "kaiyi-x7",
+        "file":  "view-2.jpg",
+        "title":  "Kaiyi Kunlun 002.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Kaiyi_Kunlun_002.jpg"
+    },
+    {
+        "model":  "kaiyi-x7",
+        "file":  "view-3.jpg",
+        "title":  "Kaiyi Kunlun 003.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Kaiyi_Kunlun_003.jpg"
+    },
+    {
+        "model":  "kaiyi-x7",
+        "file":  "view-4.jpg",
+        "title":  "Kaiyi Kunlun 004.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Kaiyi_Kunlun_004.jpg"
+    },
+    {
+        "model":  "kaiyi-x3-pro",
+        "file":  "view-1.jpg",
+        "title":  "2022 Kaiyi X3 PRO white front.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:2022_Kaiyi_X3_PRO_white_front.jpg"
+    },
+    {
+        "model":  "kaiyi-x3-pro",
+        "file":  "view-2.jpg",
+        "title":  "2022 Kaiyi X3 PRO white rear.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:2022_Kaiyi_X3_PRO_white_rear.jpg"
+    },
+    {
+        "model":  "kaiyi-x3-pro",
+        "file":  "view-3.jpg",
+        "title":  "2022 Kaiyi X3 PRO white side.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:2022_Kaiyi_X3_PRO_white_side.jpg"
+    },
+    {
+        "model":  "kaiyi-x3-pro",
+        "file":  "view-4.jpg",
+        "title":  "Kaiyi Showjet 001.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Kaiyi_Showjet_001.jpg"
+    },
+    {
+        "model":  "gac-gs3",
+        "file":  "view-1.jpg",
+        "title":  "GAC Trumpchi GS3 Shishi 01 2022-09-18.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:GAC_Trumpchi_GS3_Shishi_01_2022-09-18.jpg"
+    },
+    {
+        "model":  "gac-gs3",
+        "file":  "view-2.jpg",
+        "title":  "GAC Trumpchi GS3 Shishi 02 2022-09-18.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:GAC_Trumpchi_GS3_Shishi_02_2022-09-18.jpg"
+    },
+    {
+        "model":  "gac-gs3",
+        "file":  "view-3.jpg",
+        "title":  "Trumpchi GS3 II 001.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Trumpchi_GS3_II_001.jpg"
+    },
+    {
+        "model":  "gac-gs3",
+        "file":  "view-4.jpg",
+        "title":  "Trumpchi GS3 II 003.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Trumpchi_GS3_II_003.jpg"
+    },
+    {
+        "model":  "jetour-t2",
+        "file":  "view-1.jpg",
+        "title":  "Jetour Traveller 001.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Traveller_001.jpg"
+    },
+    {
+        "model":  "jetour-t2",
+        "file":  "view-2.jpg",
+        "title":  "Jetour Traveller 006.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Traveller_006.jpg"
+    },
+    {
+        "model":  "jetour-t2",
+        "file":  "view-3.jpg",
+        "title":  "Jetour Traveller 007.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_Traveller_007.jpg"
+    },
+    {
+        "model":  "jetour-t2",
+        "file":  "view-4.jpg",
+        "title":  "Jetour T2 interior.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Jetour_T2_interior.jpg"
+    },
+    {
+        "model":  "livan-x3-pro",
+        "file":  "view-1.jpg",
+        "title":  "2017 Geely Yuanjing X3 (front).jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:2017_Geely_Yuanjing_X3_(front).jpg"
+    },
+    {
+        "model":  "livan-x3-pro",
+        "file":  "view-2.jpg",
+        "title":  "2017 Geely Yuanjing X3 (rear).jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:2017_Geely_Yuanjing_X3_(rear).jpg"
+    },
+    {
+        "model":  "livan-x3-pro",
+        "file":  "view-3.jpg",
+        "title":  "2018 Geely Yuanjing X3, front 8.9.18.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:2018_Geely_Yuanjing_X3,_front_8.9.18.jpg"
+    },
+    {
+        "model":  "livan-x3-pro",
+        "file":  "view-4.jpg",
+        "title":  "2018 Geely Yuanjing X3 rear 8.3.18.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:2018_Geely_Yuanjing_X3_rear_8.3.18.jpg"
+    },
+    {
+        "model":  "lynk-co-06",
+        "file":  "view-1.jpg",
+        "title":  "Lynk \u0026 Co 06 005.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Lynk_\u0026_Co_06_005.jpg"
+    },
+    {
+        "model":  "lynk-co-06",
+        "file":  "view-2.jpg",
+        "title":  "Lynk \u0026 Co 06 006.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Lynk_\u0026_Co_06_006.jpg"
+    },
+    {
+        "model":  "lynk-co-06",
+        "file":  "view-3.jpg",
+        "title":  "Lynk \u0026 Co 06 007.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Lynk_\u0026_Co_06_007.jpg"
+    },
+    {
+        "model":  "lynk-co-06",
+        "file":  "view-4.jpg",
+        "title":  "Lynk \u0026 Co 06 008.jpg",
+        "source":  "https://commons.wikimedia.org/wiki/File:Lynk_\u0026_Co_06_008.jpg"
+    }
+]

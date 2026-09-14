@@ -9,14 +9,60 @@ detail=function(id){
   const v=state.vehicles.find(vehicle=>vehicle.id===id);
   if(!v)return;
   const frames=v.spinFrames||16;
-  const viewer=v.has360?`<div class="spin-shell"><div class="spin-stage" id="spinStage" tabindex="0" style="--car-image:url('${v.sprite}')" role="img" aria-label="Manual 360 degree view of ${v.brand} ${v.model}"></div><div class="spin-progress"><button data-spin-step="-1" aria-label="Previous angle">‹</button><input id="spinSlider" type="range" min="0" max="${frames-1}" value="0" step="1" aria-label="Vehicle rotation angle"><button data-spin-step="1" aria-label="Next angle">›</button></div><p class="spin-counter"><span id="spinAngle">0°</span> / 360°</p><p class="spin-help">DRAG • SWIPE • USE ARROW KEYS</p><small class="asset-note">Self-hosted Abidi Motors 360° presentation.</small></div>`:`<div class="detail-photo-shell"><img src="${v.photo}" alt="${v.brand} ${v.model}" decoding="async"></div>`;
+  const vehiclePhotos=(Array.isArray(v.photos)&&v.photos.length?v.photos:[v.photo]).filter(Boolean);
+  const photoMarkup=`<div class="detail-photo-shell"><img data-gallery-main src="${vehiclePhotos[0]||''}" alt="${v.brand} ${v.model}" decoding="async">${vehiclePhotos.length>1?`<div class="detail-photo-thumbs">${vehiclePhotos.map((photo,index)=>`<button type="button" class="${index===0?'active':''}" data-gallery-photo="${index}" aria-label="Show photo ${index+1}"><img src="${photo}" alt="" loading="lazy"></button>`).join('')}</div>`:''}</div>`;
+  const viewer=v.has3d?`<div class="three-shell" id="threeStage"><img class="three-fallback" src="${v.photo}" alt="${v.brand} ${v.model}" hidden><div class="three-loading" data-three-progress><i></i><span data-three-status role="status" aria-live="polite">Loading 3D vehicle</span></div><button class="three-reset" type="button" data-three-reset>Reset view</button><p class="three-help">DRAG TO ROTATE • SCROLL OR PINCH TO ZOOM</p><small class="asset-note three-credit">3D model: ${v.modelCredit}</small></div>`:v.has360?`<div class="spin-shell"><div class="spin-stage" id="spinStage" tabindex="0" style="--car-image:url('${v.sprite}')" role="img" aria-label="Manual 360 degree view of ${v.brand} ${v.model}"></div><div class="spin-progress"><button data-spin-step="-1" aria-label="Previous angle">‹</button><input id="spinSlider" type="range" min="0" max="${frames-1}" value="0" step="1" aria-label="Vehicle rotation angle"><button data-spin-step="1" aria-label="Next angle">›</button></div><p class="spin-counter"><span id="spinAngle">0°</span> / 360°</p><p class="spin-help">DRAG • SWIPE • USE ARROW KEYS</p><small class="asset-note">Self-hosted Abidi Motors 360° presentation.</small></div>`:`<div class="detail-photo-shell"><img src="${v.photo}" alt="${v.brand} ${v.model}" decoding="async"></div>`;
   const shareText=`${v.brand} ${v.model} — ${v.price?v.price+'M':'price on request'} at Abidi Motors`;
-  const studioLabel=v.has360?'INTERACTIVE 360° STUDIO':'CURATED VEHICLE PREVIEW';
-  const studioHint=v.has360?'Drag the vehicle to inspect every angle':'A closer look at the selected vehicle';
-  document.querySelector('#modalContent').innerHTML=`<button class="modal-close" aria-label="Close vehicle details">×</button><div class="modal-layout"><div class="modal-viewer vehicle-${v.id} ${v.has360?'has-spin':''}"><div class="detail-viewer-top"><span>ABIDI PRIVATE VIEW</span><b>${studioLabel}</b></div>${viewer}<div class="detail-viewer-foot"><i></i><span>${studioHint}</span><small>${String(v.id).padStart(2,'0')} / 31</small></div></div><div class="modal-copy"><div class="detail-heading"><p class="eyebrow">${v.brand} • ${v.year}</p><span class="detail-status"><i></i>${v.status}</span></div><h2>${v.model}</h2><div class="detail-price"><small>${v.price?'CURRENT DISPLAY PRICE':'PRICE'}</small><strong>${v.price?v.price+'M':'ON REQUEST'}</strong><span>Confirmed by our showroom team</span></div><p class="detail-intro">A private digital viewing, curated by Abidi Motors. Explore the vehicle, review its key information, then speak directly with our team.</p><div class="modal-specs"><div><small>01 / BODY</small><b>${v.body}</b></div><div><small>02 / TRANSMISSION</small><b>${v.transmission}</b></div><div><small>03 / MODEL YEAR</small><b>${v.year}</b></div><div><small>04 / AVAILABILITY</small><b>${v.status}</b></div></div><div class="modal-actions"><button class="button enquire" data-model="${v.brand} ${v.model}">Request a private viewing <span>↗</span></button><a class="button detail-whatsapp" href="https://wa.me/213795263552?text=${encodeURIComponent(`Hello Abidi Motors, I am interested in ${v.brand} ${v.model}.`)}" target="_blank" rel="noreferrer">WhatsApp <span>↗</span></a><button class="button button-outline detail-share" data-share-vehicle="${encodeURIComponent(shareText)}" aria-label="Share ${v.brand} ${v.model}">Share</button></div><p class="detail-assurance"><span>✓ Direct showroom assistance</span><span>✓ Availability confirmation</span></p></div></div>`;
-  document.querySelector('#vehicleModal').showModal();
+  const studioLabel=v.has3d?'TRUE 3D VEHICLE STUDIO':v.has360?'INTERACTIVE 360° STUDIO':'CURATED VEHICLE PREVIEW';
+  const studioHint=v.has3d?'Rotate freely and zoom into the vehicle':v.has360?'Drag the vehicle to inspect every angle':'A closer look at the selected vehicle';
+  document.querySelector('#modalContent').innerHTML=`<button class="modal-close" aria-label="Close vehicle details">×</button><div class="modal-layout"><div class="modal-viewer vehicle-${v.id} ${v.has3d?'has-three':v.has360?'has-spin':''}"><div class="detail-viewer-top"><span>ABIDI PRIVATE VIEW</span><b>${studioLabel}</b></div>${viewer}<div class="detail-viewer-foot"><i></i><span>${studioHint}</span><small>${String(v.id).padStart(2,'0')} / 31</small></div></div><div class="modal-copy"><div class="detail-heading"><p class="eyebrow">${v.brand} • ${v.year}</p><span class="detail-status"><i></i>${v.status}</span></div><h2>${v.model}</h2><div class="detail-price"><small>${v.price?'CURRENT DISPLAY PRICE':'PRICE'}</small><strong>${v.price?v.price+'M':'ON REQUEST'}</strong><span>Confirmed by our showroom team</span></div><p class="detail-intro">A private digital viewing, curated by Abidi Motors. Explore the vehicle, review its key information, then speak directly with our team.</p><div class="modal-specs"><div><small>01 / BODY</small><b>${v.body}</b></div><div><small>02 / TRANSMISSION</small><b>${v.transmission}</b></div><div><small>03 / MODEL YEAR</small><b>${v.year}</b></div><div><small>04 / AVAILABILITY</small><b>${v.status}</b></div></div><div class="modal-actions"><button class="button enquire" data-model="${v.brand} ${v.model}">Request a private viewing <span>↗</span></button><a class="button detail-whatsapp" href="https://wa.me/213795263552?text=${encodeURIComponent(`Hello Abidi Motors, I am interested in ${v.brand} ${v.model}.`)}" target="_blank" rel="noreferrer">WhatsApp <span>↗</span></a><button class="button button-outline detail-share" data-share-vehicle="${encodeURIComponent(shareText)}" aria-label="Share ${v.brand} ${v.model}">Share</button></div><p class="detail-assurance"><span>✓ Direct showroom assistance</span><span>✓ Availability confirmation</span></p></div></div>`;
+  const modalSpecs=document.querySelector('#modalContent .modal-specs');
+  [["05 / MILEAGE",v.mileage!=null?`${Number(v.mileage).toLocaleString()} km`:''],["06 / ENGINE",v.engine],["07 / COLOUR",v.color]].filter(([,value])=>value).forEach(([label,value])=>modalSpecs.insertAdjacentHTML('beforeend',`<div><small>${label}</small><b>${value}</b></div>`));
+  if(v.description)document.querySelector('#modalContent .detail-intro').textContent=v.description;
+  const vehicleModal=document.querySelector('#vehicleModal');
+  vehicleModal.showModal();
+  vehicleModal.scrollTop=0;
   if(window.gsap&&!simpleMotion){gsap.fromTo('#vehicleModal .modal-viewer',{autoAlpha:0,x:-28},{autoAlpha:1,x:0,duration:.65,ease:'power3.out'});gsap.fromTo('#vehicleModal .modal-copy',{autoAlpha:0,x:28},{autoAlpha:1,x:0,duration:.65,delay:.08,ease:'power3.out'})}
-  if(v.has360)initSpin(frames,v.sprite);
+  let viewerCleanup=null,mediaToken=0;
+  const modalViewer=vehicleModal.querySelector('.modal-viewer');
+  const interactiveNode=modalViewer.querySelector('.three-shell,.spin-shell');
+  const interactiveMarkup=interactiveNode?.outerHTML;
+  const mountInteractive=()=>{
+    if(v.has3d){
+      const token=++mediaToken;
+      import('./three-viewer.js?v=20260914-2').then(({mountVehicleViewer})=>{
+        if(token!==mediaToken)return;
+        viewerCleanup=mountVehicleViewer({container:vehicleModal.querySelector('#threeStage'),url:v.modelUrl,label:`${v.brand} ${v.model}`,fitSize:v.viewerScale});
+      }).catch(()=>{
+        const shell=vehicleModal.querySelector('#threeStage');if(!shell)return;shell.classList.add('is-error');shell.querySelector('.three-fallback').hidden=false;shell.querySelector('[data-three-status]').textContent='3D could not start. Showing the vehicle photo instead.';
+      });
+    }else if(v.has360)viewerCleanup=initSpin(frames,v.sprite)||null;
+  };
+  if(interactiveNode){
+    const selector=document.createElement('div');
+    selector.className='detail-media-switch';
+    selector.setAttribute('role','group');
+    selector.setAttribute('aria-label','Choose vehicle view');
+    selector.innerHTML='<button type="button" class="active" data-media-view="interactive" aria-pressed="true">360° View</button><button type="button" data-media-view="photos" aria-pressed="false">Photos</button>';
+    modalViewer.append(selector);
+    selector.addEventListener('click',event=>{
+      const button=event.target.closest('[data-media-view]');
+      if(!button||button.classList.contains('active'))return;
+      const interactive=button.dataset.mediaView==='interactive';
+      mediaToken++;viewerCleanup?.();viewerCleanup=null;
+      modalViewer.querySelector('.three-shell,.spin-shell,.detail-photo-shell')?.remove();
+      modalViewer.querySelector('.detail-viewer-foot span').textContent=interactive?studioHint:'A closer look at the selected vehicle';
+      modalViewer.querySelector('.detail-viewer-top b').textContent=interactive?studioLabel:'VEHICLE PHOTOGRAPHY';
+      modalViewer.classList.toggle('showing-photos',!interactive);
+      selector.querySelectorAll('button').forEach(option=>{const active=option===button;option.classList.toggle('active',active);option.setAttribute('aria-pressed',active)});
+      selector.insertAdjacentHTML('beforebegin',interactive?interactiveMarkup:photoMarkup);
+      if(interactive)mountInteractive();
+    });
+    vehicleModal.addEventListener('close',()=>{mediaToken++;viewerCleanup?.()},{once:true});
+    mountInteractive();
+  }
+  if(!interactiveNode&&vehiclePhotos.length>1)modalViewer.querySelector('.detail-photo-shell')?.replaceWith(document.createRange().createContextualFragment(photoMarkup));
+  modalViewer.addEventListener('click',event=>{const thumb=event.target.closest('[data-gallery-photo]');if(!thumb)return;const index=Number(thumb.dataset.galleryPhoto),main=modalViewer.querySelector('[data-gallery-main]');if(main)main.src=vehiclePhotos[index];modalViewer.querySelectorAll('[data-gallery-photo]').forEach(button=>button.classList.toggle('active',button===thumb))});
 };
 document.addEventListener('click',async event=>{
   const button=event.target.closest('[data-share-vehicle]');

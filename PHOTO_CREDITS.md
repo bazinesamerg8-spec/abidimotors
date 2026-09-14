@@ -20,3 +20,14 @@ Review each source's current reuse terms before production publication. Source U
 ## Showroom environment
 
 - `assets/showroom/abidi-showroom-panorama-v2.jpg` and its mobile derivative `abidi-showroom-panorama-v2-mobile.jpg`: optimized copies of the original AI-generated background created for the Abidi Motors interactive showroom using OpenAI's built-in image-generation tool, September 2026. They contain no third-party logo, vehicle or readable signage.
+
+## Interactive 3D model
+
+- `assets/models/volkswagen-t-roc.glb`: “Volkswagen T-Roc” by Nieve5677, downloaded from Sketchfab and supplied by the showroom owner. Licensed under Creative Commons Attribution 4.0. Source: https://sketchfab.com/3d-models/volkswagen-t-roc-26ca59b113ae41098402b9931279d5a1
+# 3D vehicle models
+
+- Jetour Dashing: GLB archive supplied directly by Abidi Motors on 14 September 2026. The archive contains no author or licence metadata; confirm commercial-use rights before public deployment.
+
+## Five-photo vehicle galleries
+
+The additional front, rear, side and interior gallery views are self-hosted derivatives of files from Wikimedia Commons. Each source file remains subject to the licence shown on its Commons description page (primarily CC BY-SA 4.0 or CC0). Available source-page mappings are stored with the gallery assets in `assets/cars/gallery/direct-sources.json`; model-family category sources include Volkswagen Golf VIII, Volkswagen T-Roc, Jetta VS5/VS7, Audi A3/Q3, Oshan X5, Roewe i5, Geely Binyue, GAC GS3/GS4 Max, Kaiyi, Lynk & Co, Jetour and Kia.

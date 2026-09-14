@@ -16,13 +16,16 @@
       document.documentElement.classList.toggle('performance-lite',Boolean(lowPower));
     })();
   </script>
+  <script type="importmap">
+    {"imports":{"three":"./assets/vendor/three/build/three.module.min.js","three/addons/":"./assets/vendor/three/examples/jsm/"}}
+  </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="showroom.css">
   <link rel="stylesheet" href="atelier.css">
   <link rel="stylesheet" href="dealership.css">
   <link rel="stylesheet" href="tour.css?v=20260912-2">
   <link rel="stylesheet" href="rooms.css?v=20260910-4">
-  <link rel="stylesheet" href="detail.css?v=20260909-2">
+  <link rel="stylesheet" href="detail.css?v=20260914-3">
   <link rel="stylesheet" href="mobile.css?v=20260912-6">
 </head>
 <body>
@@ -163,14 +166,14 @@
   <dialog id="compareModal" class="compare-modal"><div id="compareContent"></div></dialog>
   <div class="site-toast" id="siteToast" role="status" aria-live="polite"></div>
   <aside class="compare-bar" id="compareBar"><span><b id="compareCount">0</b> selected to compare</span><div id="compareNames"></div><button class="button button-small" id="compareNow">Compare</button><button class="icon-button" id="clearCompare" aria-label="Clear comparison">×</button></aside>
-  <script src="data.js"></script>
-  <script src="script.js?v=20260912-2"></script>
+  <script src="data.js?v=20260914-5"></script>
+  <script src="script.js?v=20260914-3"></script>
   <script>
     (()=>{
       const lite=document.documentElement.classList.contains('performance-lite');
       const scripts=lite
-        ? ['showroom.js?v=20260912-1','tour.js?v=20260912-5']
-        : ['assets/vendor/gsap/gsap.min.js','assets/vendor/gsap/ScrollTrigger.min.js','showroom.js?v=20260912-1','tour.js?v=20260912-5'];
+        ? ['showroom.js?v=20260914-3','tour.js?v=20260912-5']
+        : ['assets/vendor/gsap/gsap.min.js','assets/vendor/gsap/ScrollTrigger.min.js','showroom.js?v=20260914-3','tour.js?v=20260912-5'];
       const load=index=>{
         if(index===scripts.length)return;
         const script=document.createElement('script');

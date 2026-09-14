@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Abidi Motors — Control Center</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%2310271f'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='26' fill='%23e4bd7c'%3EAM%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="admin.css?v=20260910-1">
+  <link rel="stylesheet" href="admin.css?v=20260914-2">
 </head>
 <body class="admin-body">
   <div class="admin-noise" aria-hidden="true"></div>
@@ -63,14 +63,14 @@
     </section>
 
     <section class="admin-view" id="inventoryView" data-admin-view="inventory" hidden>
-      <div class="view-heading"><div><p class="admin-eyebrow">CATALOGUE / 2026</p><h1>Vehicle inventory</h1><p>Update commercial information without changing the approved model list.</p></div><div class="view-actions"><button class="admin-button ghost dark" id="exportInventory">Export JSON</button><button class="admin-button primary" id="resetInventory">Restore catalogue</button></div></div>
+      <div class="view-heading"><div><p class="admin-eyebrow">CATALOGUE / 2026</p><h1>Vehicle inventory</h1><p>Create, edit and manage every vehicle displayed in the public showroom.</p></div><div class="view-actions"><button class="admin-button primary" id="addVehicle">+ Add vehicle</button><button class="admin-button ghost dark" id="exportInventory">Export JSON</button><button class="admin-button ghost dark" id="resetInventory">Restore catalogue</button></div></div>
       <section class="admin-panel inventory-panel">
         <div class="inventory-tools">
           <label class="admin-search"><span>⌕</span><input id="adminSearch" type="search" placeholder="Search brand or model…"></label>
           <select id="adminStatusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option>In stock</option><option>Arriving</option><option>On request</option><option>Reserved</option><option>Sold</option></select>
           <select id="adminVisibilityFilter" aria-label="Filter by visibility"><option value="all">All visibility</option><option value="published">Published</option><option value="hidden">Hidden</option></select>
         </div>
-        <div class="table-meta"><span id="inventoryResultCount">31 vehicles</span><small>The approved catalogue is protected: brand and model names cannot be deleted here.</small></div>
+        <div class="table-meta"><span id="inventoryResultCount">31 vehicles</span><small>Click Edit to update information and media, or add a new vehicle.</small></div>
         <div class="table-wrap">
           <table class="inventory-table"><thead><tr><th>VEHICLE</th><th>PRICE</th><th>STATUS</th><th>VISIBILITY</th><th>FEATURED</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="adminRows"></tbody></table>
         </div>
@@ -94,13 +94,17 @@
   <dialog id="editDialog" class="admin-dialog edit-dialog">
     <form id="editForm">
       <button type="button" class="dialog-close" data-close-dialog aria-label="Close">×</button>
-      <div class="editor-preview"><img id="editPhoto" alt=""><span id="editPreviewStatus"></span></div>
+      <div class="editor-preview"><img id="editPhoto" alt=""><div class="preview-empty" id="previewEmpty">No vehicle photo</div><span id="editPreviewStatus"></span></div>
       <div class="editor-fields">
-        <p class="admin-eyebrow">INVENTORY EDITOR</p><h2 id="editTitle">Edit vehicle</h2><p class="dialog-intro">Update the information customers see in the public collection.</p><input type="hidden" name="id">
-        <div class="form-row"><label>Brand<input name="brand" readonly></label><label>Model / trim<input name="model" readonly></label></div>
-        <div class="form-row"><label>Display price (M)<input name="price" type="number" min="0" inputmode="numeric" placeholder="Leave empty for on request"></label><label>Status<select name="status"><option>In stock</option><option>Arriving</option><option>On request</option><option>Reserved</option><option>Sold</option></select></label></div>
+        <p class="admin-eyebrow">INVENTORY EDITOR</p><h2 id="editTitle">Edit vehicle</h2><p class="dialog-intro">Manage the information and photographs customers see in the public collection.</p><input type="hidden" name="id">
+        <div class="form-row"><label>Brand<input name="brand" required placeholder="e.g. Jetour"></label><label>Model / trim<input name="model" required placeholder="e.g. Dashing"></label></div>
+        <div class="form-row three-fields"><label>Model year<input name="year" type="number" min="1950" max="2100" required></label><label>Display price (M)<input name="price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="On request"></label><label>Mileage (km)<input name="mileage" type="number" min="0" inputmode="numeric" placeholder="0"></label></div>
+        <div class="form-row three-fields"><label>Body type<input name="body" placeholder="SUV"></label><label>Transmission<select name="transmission"><option>Automatic</option><option>Manual</option><option>CVT</option><option>Dual-clutch</option><option>Other</option></select></label><label>Status<select name="status"><option>In stock</option><option>Arriving</option><option>On request</option><option>Reserved</option><option>Sold</option></select></label></div>
+        <div class="form-row"><label>Engine<input name="engine" placeholder="e.g. 1.5L Turbo"></label><label>Exterior colour<input name="color" placeholder="e.g. Pearl White"></label></div>
+        <label class="full-field">Description<textarea name="description" rows="3" placeholder="Optional vehicle description"></textarea></label>
+        <section class="media-editor"><div class="media-heading"><div><b>Vehicle photo gallery</b><small>Add up to 5 JPG, PNG or WebP images. The first image is the catalogue cover; all five are visible in vehicle details.</small></div><label class="upload-button">Add photos<input id="photoUpload" type="file" accept="image/jpeg,image/png,image/webp" multiple></label></div><div class="photo-list" id="photoList"></div><p class="media-status" id="mediaStatus" role="status"></p></section>
         <div class="switch-row"><label><input type="checkbox" name="published"><span></span><div><b>Published</b><small>Visible in the public catalogue</small></div></label><label><input type="checkbox" name="featured"><span></span><div><b>Featured</b><small>Prioritized in catalogue sorting</small></div></label></div>
-        <div class="dialog-actions"><button type="button" class="admin-button ghost dark" data-close-dialog>Cancel</button><button class="admin-button primary" type="submit">Save changes</button></div><p id="saveStatus" class="save-status" role="status"></p>
+        <div class="dialog-actions"><button type="button" class="danger-button" id="deleteVehicle">Delete vehicle</button><span></span><button type="button" class="admin-button ghost dark" data-close-dialog>Cancel</button><button class="admin-button primary" type="submit">Save vehicle</button></div><p id="saveStatus" class="save-status" role="status"></p>
       </div>
     </form>
   </dialog>
@@ -108,6 +112,6 @@
   <dialog id="leadDialog" class="admin-dialog lead-dialog"><div id="leadDialogContent"></div></dialog>
   <div class="admin-toast" id="adminToast" role="status" aria-live="polite"></div>
   <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-  <script src="data.js"></script><script src="admin.js?v=20260912-1"></script>
+  <script src="data.js?v=20260914-5"></script><script src="admin.js?v=20260914-2"></script>
 </body>
 </html>
